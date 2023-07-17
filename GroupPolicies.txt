@@ -1,0 +1,15 @@
+Meeting Locations
+	-Discord - for voice chat and standups
+	-Slack - for text communication 
+
+Meeting Times
+	-8 AM Daily
+	-1 PM check-in daily
+	-Wed 7/19 5:30 pm 
+
+Policies for group
+	-Ask for help when needed
+	-Alert Members of any issues that may hinder project productivity
+	 as quickly as possible.
+	-Group will discuss any resolutions to issues that arise via Discord Voice
+	
