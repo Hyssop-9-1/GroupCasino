@@ -45,4 +45,5 @@ public class CasinoAccountManager {
     public void registerAccount(CasinoAccount casinoAccount) {
         accounts.add(casinoAccount);
     }
+
 }

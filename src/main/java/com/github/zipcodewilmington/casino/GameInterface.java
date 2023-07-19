@@ -20,4 +20,11 @@ public interface GameInterface extends Runnable {
      * specifies how the game will run
      */
     void run();
+
+    /**
+     *
+     */
+    void setup();
+
+    boolean checkWinCond(PlayerInterface... player);
 }
