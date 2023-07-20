@@ -29,5 +29,6 @@ public abstract class GamblingPlayer implements PlayerInterface {
    public void payToPlay(double cost) { //every gambling game
       acct.removeFromAccountBalance(cost);
    }
+   public String getAccountName(){return acct.getUsername();}
 
 }
