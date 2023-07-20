@@ -1,1 +1,2 @@
 (Liz, 7/19/23 )Return to question about bets vs payToPlay in GamblingPlayer interface.  Is this a necessary distinction?
+(Manny, 7/20/23) Ask about win cond for slots if we wanna hard code values or create method so its more modular
