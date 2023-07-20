@@ -37,6 +37,9 @@ public class Deck {
         }
         return dealtCards;
     }
+    public int size(){
+        return cards.size();
+    }
 
 
 }

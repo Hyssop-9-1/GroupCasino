@@ -14,7 +14,8 @@ public class Dice {
         int rounds = rand.nextInt(100);
         int hold = 0;
         while (rounds>0){
-            hold = rand.nextInt(numOfDice)+1;
+            hold = rand.nextInt(numOfDice*6)+1;
+            rounds --;
         }
         return hold;
     }
