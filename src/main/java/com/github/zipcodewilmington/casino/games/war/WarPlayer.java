@@ -5,17 +5,36 @@ import com.github.zipcodewilmington.casino.GamblingPlayer;
 import com.github.zipcodewilmington.casino.gametools.Card;
 import com.github.zipcodewilmington.casino.gametools.Deck;
 
+import java.util.ArrayList;
+
 public class WarPlayer extends GamblingPlayer {
 
-    Deck playerHand;
+    Deck playerHand= new Deck();
     Integer playerPoints;
     Card currentCard;
 
     public WarPlayer(CasinoAccount acct) {
         super(acct);
+        playerHand.emptyDeck();
+
     }
 
     public Card getTopCard(){
-        return null;
+
+        return currentCard = playerHand.removeTopCard();
+    }
+
+    public Card getCurrentCard(){
+
+        return currentCard;}
+
+    public void addPlayerHand(ArrayList<Card> cards){
+        playerHand.addCards(cards);
+    }
+    public Integer getPlayerPoints(){
+        return playerPoints;
+    }
+    public void addPoints(int points){
+        playerPoints += points;
     }
 }
