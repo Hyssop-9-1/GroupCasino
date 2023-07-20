@@ -1,6 +1,7 @@
 package com.github.zipcodewilmington.casino.games.numberguess;
 
 import com.github.zipcodewilmington.casino.GameInterface;
+import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
@@ -21,6 +22,9 @@ public class NumberGuessGame implements GameInterface {
     public NumberGuessGame(List<NumberGuessPlayer> players) {
         this.players.addAll(players);
     }
+    public NumberGuessGame(){
+
+    }
 
     public int generateRandomNum(){
         randNumber = rand.nextInt(10)+1;
@@ -31,9 +35,9 @@ public class NumberGuessGame implements GameInterface {
         int hold = 0;
            for(NumberGuessPlayer p: this.players){
                do {
-                   hold = console.getIntegerInput("Input a guess between 1-10");
+                   hold = console.getIntegerInput(p.getAccountName() + ", input a guess between 1-10");
                }while(hold<1 || hold>10);
-                p.setCurrentBet(hold);
+                p.setCurrentGuess(hold);
            }
     }
 
@@ -64,8 +68,8 @@ public class NumberGuessGame implements GameInterface {
     }
 
     @Override
-    public void addPlayer() {
-
+    public void addPlayer(PlayerInterface player) {
+        players.add((NumberGuessPlayer) player);
     }
 
     @Override
@@ -77,8 +81,12 @@ public class NumberGuessGame implements GameInterface {
     public void checkWinCond() {
         for(NumberGuessPlayer p : players){
             if(p.getCurrentGuess() == randNumber){
-                console.println("You have guessed correctly! $" + (p.getCurrentBet() * 10) + " has been added to your acccount." );
+                console.println("You have guessed correctly! $" + (p.getCurrentBet() * 10) + " has been added to your account." );
                 p.collectWinnings((p.getCurrentBet() * 10));
+            }
+            else{
+                console.println("You guessed incorrectly $" + p.getCurrentBet() + " has been deducted from your account." );
+                p.payToPlay(p.getCurrentBet());
             }
         }
     }
