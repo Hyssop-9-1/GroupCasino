@@ -13,6 +13,7 @@ public interface GameInterface extends Runnable {
      *
      */
     void setup();
-
-    boolean checkWinCond(PlayerInterface... player);
+    void addPlayer(PlayerInterface player);
+    void removePlayer();
+    void checkWinCond();
 }

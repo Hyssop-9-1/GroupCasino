@@ -1,7 +1,14 @@
 package com.github.zipcodewilmington.casino;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by leon on 7/21/2020.
@@ -10,8 +17,11 @@ import java.util.List;
  */
 public class CasinoAccountManager {
 
+    static final String DBNAME = "/Users/taylor/LocalProjects/GroupCasino/src/main/java/com/github/zipcodewilmington/casino/Accounts.db";
+    ArrayList<CasinoAccount> accounts = new ArrayList();
 
-    List<CasinoAccount> accounts = new ArrayList();/**/
+
+
     /**
      * @param accountName     name of account to be returned
      * @param accountPassword password of account to be returned
@@ -45,5 +55,29 @@ public class CasinoAccountManager {
     public void registerAccount(CasinoAccount casinoAccount) {
         accounts.add(casinoAccount);
     }
+
+
+    public void load() throws IOException{
+        ObjectMapper mapper = new ObjectMapper();
+        InputStream fileInputStream = new FileInputStream("post.json");
+        this.accounts.addAll(mapper.readValue(fileInputStream, new TypeReference<ArrayList<CasinoAccount>>(){}));
+    }
+    public void save() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        //Followed a guide, this is reading in HashMap object into json format
+        try {
+            String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(accounts);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        //Write to file
+        FileOutputStream fileOutputStream = new FileOutputStream("post.json");
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(fileOutputStream, accounts);
+        fileOutputStream.close();
+
+    }
+
 
 }
