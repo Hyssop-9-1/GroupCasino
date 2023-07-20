@@ -3,7 +3,9 @@ package com.github.zipcodewilmington.casino.games.numberguess;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +15,7 @@ class NumberGuessGameTest {
 
     @Test
     void testGenerateRandomNum() {
-        ArrayList<PlayerInterface> players = new ArrayList<>();
+        List<NumberGuessPlayer> players = new ArrayList<>();
         NumberGuessGame game = new NumberGuessGame(players);
 
         int[] yield = new int[11];
@@ -27,10 +29,5 @@ class NumberGuessGameTest {
         }
     }
 
-    @Test
-    void testSetPlayerGuessTest(){
-
-
-    }
 
 }
