@@ -60,8 +60,6 @@ public class CasinoAccountManager {
     public void load() throws IOException{
         ObjectMapper mapper = new ObjectMapper();
         InputStream fileInputStream = new FileInputStream("post.json");
-        //TypeReference reference = new TypeReference(new Account()){};
-        //this.data.putAll(mapper.readValue(fileInputStream, HashMap.class);
         this.accounts.addAll(mapper.readValue(fileInputStream, new TypeReference<ArrayList<CasinoAccount>>(){}));
     }
     public void save() throws IOException {

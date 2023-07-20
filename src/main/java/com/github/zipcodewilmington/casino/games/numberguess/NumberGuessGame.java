@@ -22,6 +22,8 @@ public class NumberGuessGame implements GameInterface {
     public NumberGuessGame(List<NumberGuessPlayer> players) {
         this.players.addAll(players);
     }
+    
+
     public NumberGuessGame(){
 
     }
@@ -45,9 +47,10 @@ public class NumberGuessGame implements GameInterface {
     public void run() {
         boolean cont = true;
         do {
+            for(int i = 0; i<50; i++){ console.println("");}
             setup();
             for (NumberGuessPlayer p : players) {
-                double bet = console.getDoubleInput("How much would you like to bet?");
+                double bet = console.getDoubleInput(p.getAccountName()+ " how much would you like to bet?");
                 if (bet != 0) {
                     p.setCurrentBet(bet);
                 }
@@ -81,11 +84,11 @@ public class NumberGuessGame implements GameInterface {
     public void checkWinCond() {
         for(NumberGuessPlayer p : players){
             if(p.getCurrentGuess() == randNumber){
-                console.println("You have guessed correctly! $" + (p.getCurrentBet() * 10) + " has been added to your account." );
+                console.println(p.getAccountName()+ ", you have guessed correctly! $" + (p.getCurrentBet() * 10) + " has been added to your account." );
                 p.collectWinnings((p.getCurrentBet() * 10));
             }
             else{
-                console.println("You guessed incorrectly $" + p.getCurrentBet() + " has been deducted from your account." );
+                console.println(p.getAccountName()+ ", you guessed incorrectly $" + p.getCurrentBet() + " has been deducted from your account." );
                 p.payToPlay(p.getCurrentBet());
             }
         }
