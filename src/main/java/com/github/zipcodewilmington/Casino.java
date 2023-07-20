@@ -43,8 +43,6 @@ public class Casino implements Runnable {
                         //play(new SlotsGame(), new SlotsPlayer());
                     } else if (gameSelectionInput.equals("NUMBERGUESS")) {
                         NumberGuessPlayer account = new NumberGuessPlayer(casinoAccount);
-                        //ArrayList<NumberGuessPlayer> players = new ArrayList<>();
-                        //players.add(account);
                         NumberGuessGame game = new NumberGuessGame();
                         game.addPlayer(account);
                         game.run();
@@ -88,13 +86,15 @@ public class Casino implements Runnable {
                 .append("\n\t[ SLOTS ], [ NUMBERGUESS ]")
                 .toString());
     }
-
+    /*
     private void play(Object gameObject, Object playerObject) {
         GameInterface game = (GameInterface)gameObject;
         PlayerInterface player = (PlayerInterface)playerObject;
         //game.add(player);
         game.run();
     }
+
+     */
 
     private CasinoAccount login(){
         String accountName = console.getStringInput("Enter your account name:");
