@@ -25,9 +25,9 @@ public class Card {
     }
 
 
-//    public int getBlackJackValue(){
-//
-//    }
+    public int getBlackJackValue(){
+
+    }
 
 
     //add toString
