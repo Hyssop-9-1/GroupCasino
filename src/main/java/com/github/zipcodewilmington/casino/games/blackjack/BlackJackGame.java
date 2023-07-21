@@ -37,8 +37,8 @@ public class BlackJackGame implements GameInterface {
 
     }
     public void playerHit(){
-        userPlayer.addPlayerHand(blackJackDeck.deal(1));
-        console.println(String.valueOf(userPlayer.handTotal()));
+        blackJackPlayer.addPlayerHand(blackJackDeck.deal(1));
+        console.println(String.valueOf(blackJackPlayer.handTotal()));
 
     }
 
