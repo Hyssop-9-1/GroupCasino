@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class DealerPlayer extends GamblingPlayer {
     Deck dealerHand = new Deck();
-    Card currentCard;
 
     public DealerPlayer(CasinoAccount acct) {
         super(acct);

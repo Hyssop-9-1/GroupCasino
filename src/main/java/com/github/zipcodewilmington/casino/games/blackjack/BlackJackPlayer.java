@@ -11,8 +11,6 @@ public class BlackJackPlayer extends GamblingPlayer {
 
     Deck playerHand = new Deck();
 
-    Card currentCard;
-
     public BlackJackPlayer(CasinoAccount acct) {
         super(acct);
         this.playerHand.emptyDeck();
@@ -34,14 +32,16 @@ public class BlackJackPlayer extends GamblingPlayer {
     public Integer handTotal(){
         int total = 0;
         for (Card c: playerHand.getCards()){
+            if (c.rank.getAbbreviation().equals("A"))
+            {
+                if ((total += 11) > 21 ){
+                    total += c.rank.getBlackJackValue();
+                } else {
+                    total += 11;
+                }
+            }
             total += c.rank.getBlackJackValue();
-//            if (c.getValue() > 10) {
-//                total += 10;
-//            } else {
-//                total += c.getValue();
-//            }
         }
-
         return total;
     }
 }
