@@ -12,7 +12,6 @@ public class BlackJackPlayer extends GamblingPlayer {
     Deck playerHand = new Deck();
 
     Card currentCard;
-    ArrayList<Card> playerHandValue = new ArrayList<>();
 
     public BlackJackPlayer(CasinoAccount acct) {
         super(acct);
@@ -23,10 +22,12 @@ public class BlackJackPlayer extends GamblingPlayer {
          playerHand.addCards(cards);
         return cards;
     }
-
-    public Card getTopCard(){
-
-        return currentCard = playerHand.removeTopCard();
+    public String viewCard(){
+        StringBuilder sb = new StringBuilder();
+        for (Card c: playerHand.getCards()){
+            sb.append("Current hand the " + c.getRank() + " of " + c.getSuit());
+        }
+        return String.valueOf(sb);
     }
 
     public Integer handTotal(){
