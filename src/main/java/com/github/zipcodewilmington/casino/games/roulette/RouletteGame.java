@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.casino.games.roulette;
 
+
 import com.github.zipcodewilmington.Casino;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
@@ -21,6 +22,7 @@ public class RouletteGame implements GameInterface {
     public RouletteGame(){
 
     }
+
     public Integer spinWheel() {
         int index;
         return null;
@@ -35,6 +37,7 @@ public class RouletteGame implements GameInterface {
         int winningAmount;
         return null;
     }
+
 
     /**
      *
@@ -77,4 +80,6 @@ public class RouletteGame implements GameInterface {
         return console.getIntegerInput(question);
 
     }
+
+
 }
