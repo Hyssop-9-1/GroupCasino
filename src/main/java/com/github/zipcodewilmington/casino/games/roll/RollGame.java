@@ -15,7 +15,7 @@ public class RollGame implements GameInterface {
     Dice dice;
     @Override
     public void run() {
-        boolean cont = true;
+        String yesNo;
         do {
             for(int i = 0; i < 50; i++){console.println("");}
             for (RollPlayer p : players) {
@@ -33,10 +33,12 @@ public class RollGame implements GameInterface {
                 }
                 checkWinCond();
             }
-            if(console.getStringInput("Play again? y/n").equalsIgnoreCase("n")){
-                cont = false;
-            }
-        }while(cont);
+            yesNo = console.getStringInput("Play again? y/n: ");
+        }while(cont(yesNo));
+    }
+
+    public boolean cont(String yesNo){
+        return yesNo.equalsIgnoreCase("y");
     }
 
     @Override
@@ -67,12 +69,14 @@ public class RollGame implements GameInterface {
         return players.get(indexOfHighest);
     }
     public RollPlayer getLowestRoll(ArrayList<RollPlayer> players){
-        int hold = 0;
+        int hold = Integer.MAX_VALUE;
         int indexOfLowest = 0;
-        for(RollPlayer p: players){
-            if(p.getCurrentRoll()< hold){
-                hold = p.getCurrentRoll();
-                indexOfLowest = players.indexOf(p);
+        for(int i = 0; i < 4; i++) {
+            for (RollPlayer p : players) {
+                if (p.getCurrentRoll() < hold) {
+                    hold = p.getCurrentRoll();
+                    indexOfLowest = players.indexOf(p);
+                }
             }
         }
         return players.get(indexOfLowest);
