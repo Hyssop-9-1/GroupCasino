@@ -41,6 +41,16 @@ public class DealerPlayer extends GamblingPlayer {
         return String.valueOf(sb);
     }
 
+    //method to make sure the dealer values line up with the correct total
+//    public String viewCard1(){
+//        StringBuilder sb = new StringBuilder();
+//        for (Card c: dealerHand.getCards()){
+//            sb.append("The dealer has " + c.toString() + "\n");
+//        }
+//
+//        return String.valueOf(sb);
+//    }
+
     public Integer handTotal(){
         int total = 0;
         for (Card c: dealerHand.getCards()){
