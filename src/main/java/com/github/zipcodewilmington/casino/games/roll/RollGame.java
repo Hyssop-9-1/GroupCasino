@@ -54,28 +54,40 @@ public class RollGame implements GameInterface {
 
     }
 
-    @Override
-    public void checkWinCond() {
+    public RollPlayer getHighestRoll(ArrayList<RollPlayer> players){
         int indexOfHighest = 0;
         int hold = 0;
-        int indexOfLowest = 0;
+
         for(RollPlayer p: players){
             if(p.getCurrentRoll() > hold){
                 hold = p.getCurrentRoll();
                 indexOfHighest = players.indexOf(p);
             }
         }
+        return players.get(indexOfHighest);
+    }
+    public RollPlayer getLowestRoll(ArrayList<RollPlayer> players){
+        int hold = 0;
+        int indexOfLowest = 0;
         for(RollPlayer p: players){
             if(p.getCurrentRoll()< hold){
                 hold = p.getCurrentRoll();
                 indexOfLowest = players.indexOf(p);
             }
         }
-        int moneyToTransfer = players.get(indexOfHighest).getCurrentRoll() - players.get(indexOfLowest).getCurrentRoll();
-        console.println(players.get(indexOfLowest).getAccountName()+ " owes "
-                + players.get(indexOfHighest).getAccountName()+ " $" + moneyToTransfer);
-        players.get(indexOfLowest).payToPlay(moneyToTransfer);
-        players.get(indexOfHighest).collectWinnings(moneyToTransfer);
+        return players.get(indexOfLowest);
+    }
+
+
+    @Override
+    public void checkWinCond() {
+        RollPlayer highest = getHighestRoll(players);
+        RollPlayer lowest = getLowestRoll(players);
+        int moneyToTransfer = highest.getCurrentRoll() - lowest.getCurrentRoll();
+        console.println(lowest.getAccountName()+ " owes "
+                + highest.getAccountName()+ " $" + moneyToTransfer);
+        lowest.payToPlay(moneyToTransfer);
+        highest.collectWinnings(moneyToTransfer);
     }
 
 }
