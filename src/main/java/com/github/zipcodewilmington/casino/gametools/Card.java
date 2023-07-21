@@ -24,10 +24,16 @@ public class Card {
         return rank.ordinal()+2; ///MAYBE??!
     }
 
+
 //    public int getBlackJackValue(){
 //
 //    }
 
+
     //add toString
+    @Override
+    public String toString() {
+        return  rank + " of " + suit;
+    }
 }
 
