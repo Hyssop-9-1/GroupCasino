@@ -2,6 +2,7 @@
   "username" : "Taylor",
   "password" : "Myers",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "accountBalance" : -41.0
 }, {
   "username" : "Liz",
@@ -9,6 +10,9 @@
   "accountBalance" : 0.0
 =======
   "accountBalance" : 99935.0
+=======
+  "accountBalance" : 99920.0
+>>>>>>> 38e4fae44482eee5b5a7d627c538fa2e28ae00c2
 }, {
   "username" : "Liz",
   "password" : "1123",

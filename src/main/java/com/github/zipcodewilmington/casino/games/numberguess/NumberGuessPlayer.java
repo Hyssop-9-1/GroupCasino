@@ -18,6 +18,7 @@ public class NumberGuessPlayer extends GamblingPlayer {
     public void setCurrentGuess(int currentGuess){
         this.currentGuess = currentGuess;
     }
+
     public int getCurrentGuess(){
         return currentGuess;
     }
