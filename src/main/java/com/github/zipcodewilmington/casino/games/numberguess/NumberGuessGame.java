@@ -20,7 +20,6 @@ public class NumberGuessGame implements GameInterface {
 
 
 
-
     public int generateRandomNum(){
         randNumber = rand.nextInt(10)+1;
         return randNumber;
@@ -63,6 +62,7 @@ public class NumberGuessGame implements GameInterface {
         generateRandomNum();
     }
 
+
     @Override
     public void addPlayer(PlayerInterface player) {
         players.add((NumberGuessPlayer) player);
@@ -74,6 +74,7 @@ public class NumberGuessGame implements GameInterface {
     }
 
     @Override
+
     public void checkWinCond() {
         for(NumberGuessPlayer p : players){
             if(p.getCurrentGuess() == randNumber){
@@ -86,6 +87,7 @@ public class NumberGuessGame implements GameInterface {
             }
         }
     }
+
 
 
 }
