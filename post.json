@@ -1,6 +1,7 @@
 [ {
   "username" : "Taylor",
   "password" : "Myers",
+
   "accountBalance" : 99920.0
 }, {
   "username" : "Liz",
@@ -10,4 +11,5 @@
   "username" : "Erin",
   "password" : "123",
   "accountBalance" : 1.0000065E7
+
 } ]

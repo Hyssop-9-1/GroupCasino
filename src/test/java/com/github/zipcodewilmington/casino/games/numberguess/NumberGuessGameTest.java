@@ -16,9 +16,11 @@ class NumberGuessGameTest {
 
     @Test
     void testGenerateRandomNum() {
+
         NumberGuessPlayer player = new NumberGuessPlayer(null);
         NumberGuessGame game = new NumberGuessGame();
         game.addPlayer(player);
+
 
 
         int[] yield = new int[11];

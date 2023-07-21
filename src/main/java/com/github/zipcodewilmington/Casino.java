@@ -53,6 +53,7 @@ public class Casino implements Runnable {
                         NumberGuessGame game = new NumberGuessGame();
                         game.addPlayer(account);
                         game.run();
+
                     } else if (gameSelectionInput.equalsIgnoreCase("war")){
                         WarPlayer account = new WarPlayer(casinoAccount);
                         WarGame game = new WarGame();
@@ -68,6 +69,7 @@ public class Casino implements Runnable {
                             game.addPlayer(player1);
                         }
                         game.run();
+
                     } else {
                         // TODO - implement better exception handling
                         String errorMessage = "[ %s ] is an invalid game selection";
@@ -119,6 +121,7 @@ public class Casino implements Runnable {
      */
 
     private CasinoAccount login(){
+
         CasinoAccount account;
         do {
             String accountName = console.getStringInput("Enter your account name:");
@@ -133,5 +136,6 @@ public class Casino implements Runnable {
         String accountPassword = console.getStringInput("Enter your account password:");
         CasinoAccount newAccount = casinoAccountManager.createAccount(accountName, accountPassword);
         casinoAccountManager.registerAccount(newAccount);
+
     }
 }
