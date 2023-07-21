@@ -32,23 +32,24 @@ public class DealerPlayer extends GamblingPlayer {
     }
 
     //method to make sure the dealer values line up with the correct total
-//    public String viewCard1(){
-//        StringBuilder sb = new StringBuilder();
-//        for (Card c: dealerHand.getCards()){
-//            sb.append("The dealer has " + c.toString() + "\n");
-//        }
-//
-//        return String.valueOf(sb);
-//    }
+    public String viewCard1(){
+        StringBuilder sb = new StringBuilder();
+        for (Card c: dealerHand.getCards()){
+            sb.append("The dealer has " + c.toString() + "\n");
+        }
+
+        return String.valueOf(sb);
+    }
 
     public Integer handTotal(){
         int total = 0;
         for (Card c: dealerHand.getCards()){
-            if (c.getValue() > 10) {
-                total += 10;
-            } else {
-                total += c.getValue();
-            }
+            total += c.rank.getBlackJackValue();
+//            if (c.getValue() > 10) {
+//                total += 10;
+//            } else {
+//                total += c.getValue();
+//            }
         }
         return total;
     }

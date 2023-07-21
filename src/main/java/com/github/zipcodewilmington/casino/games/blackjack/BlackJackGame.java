@@ -3,6 +3,7 @@ package com.github.zipcodewilmington.casino.games.blackjack;
 import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
+import com.github.zipcodewilmington.casino.gametools.Card;
 import com.github.zipcodewilmington.casino.gametools.Deck;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
@@ -15,7 +16,8 @@ public class BlackJackGame implements GameInterface {
 
     Deck blackJackDeck;
     //private BlackJackPlayer blackJackPlayer;
-
+    private boolean continueGame = false;
+    private boolean playerTurn = true;
     public BlackJackGame(){
 
     }
@@ -31,25 +33,66 @@ public class BlackJackGame implements GameInterface {
     DealerPlayer dealerPlayer = new DealerPlayer(dealerAccount);
 
     public static void main(String[] args) {
-
         new BlackJackGame().run();
-
-
     }
-    public void playerHit(){
-        blackJackPlayer.addPlayerHand(blackJackDeck.deal(1));
-        console.println(String.valueOf(blackJackPlayer.handTotal()));
 
+    public ArrayList<Card> playerHit(){
+        return blackJackPlayer.addPlayerHand(blackJackDeck.deal(1));
+    }
+
+    public boolean userTurn(String userTurn){
+
+        if (userTurn.equalsIgnoreCase("h")){
+            return continueGame = true;
+        }
+        if (userTurn.equalsIgnoreCase("s")){
+            return continueGame = false;
+        }
+        return false;
     }
     @Override
     public void run() {
 
-        setup();
-        viewTable();
-        viewDealerTable();
+        //boolean playerTurn = true;
+        boolean continueGame = true;
+        //boolean playerTurn = true;
 
-        console.print("Your hand total is " + getPlayerHandValue());
-        console.println("Your hand total is " + getDealerHandValue());
+//        do {
+//            setup();
+//            while (playerTurn) {
+//                String userTurn = console.getStringInput("Would you like to hit or stand? Press [h] to hit / [s] to stand ");
+//                playerTurn = userTurn(userTurn);
+//            }
+//
+//
+//
+//
+//            //End game flow or continue playing
+//            String userChoice = console.getStringInput("Hi " + blackJackPlayer.getAccountName() + " would you like to play again? [y] for yes / [n] for no ");
+//            continueGame = continuePlaying(userChoice);
+//        } while (continueGame);
+
+        while (continueGame){
+            setup();
+            while (this.playerTurn != false){
+
+                String userTurn = console.getStringInput("Would you like to hit or stand? Press [h] to hit / [s] to stand ");
+                playerTurn = userTurn(userTurn);
+            }
+            String userChoice = console.getStringInput("Hi " + blackJackPlayer.getAccountName() + " would you like to play again? [y] for yes / [n] for no ");
+            continueGame = continuePlaying(userChoice);
+        }
+
+//        viewTable();
+//        viewDealerTable();
+        //console.print("Your hand total is " + getPlayerHandValue());
+
+//        playerHit();
+//        viewTable();
+
+        //console.print("Your hand total is " + getPlayerHandValue());
+
+        //console.println("\nThe dealer hand total is " + getDealerHandValue());
         //console.println(String.valueOf(blackJackPlayer.handTotal()));
 //        CasinoAccount playeraccount = new CasinoAccount("Manny", "benji", 1000.00);
 //        CasinoAccount dealeraccount = new CasinoAccount("dealer", "benji", 1000.00);
@@ -74,12 +117,24 @@ public class BlackJackGame implements GameInterface {
 //        System.out.println(dealer.handTotal());
     }
 
+
+
+    public boolean continuePlaying(String userInput){
+        if (userInput.equalsIgnoreCase("y")){
+            return continueGame = true;
+        }
+        if (userInput.equalsIgnoreCase("n")){
+            return continueGame = false;
+        }
+        return false;
+    }
+
     public void viewTable(){
         console.println(blackJackPlayer.viewCard());
     }
 
     public void viewDealerTable(){
-        console.println((dealerPlayer.viewCard()));
+        console.println((dealerPlayer.viewCard1()));
     }
 
 
@@ -112,6 +167,5 @@ public class BlackJackGame implements GameInterface {
 
     @Override
     public void checkWinCond() {
-
     }
 }
