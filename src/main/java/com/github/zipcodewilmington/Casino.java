@@ -57,10 +57,13 @@ public class Casino implements Runnable {
                         game.run();
                     } else if(gameSelectionInput.equals("ROLL")){
                         RollPlayer player = new RollPlayer(casinoAccount);
-                        RollPlayer player2 = new RollPlayer(login());
                         RollGame game = new RollGame();
                         game.addPlayer(player);
-                        game.addPlayer(player2);
+                        int hold = console.getIntegerInput("This game requires 2 players, input a number for how many more people would like to play:");
+                        for(int i = 0; i < hold; i++){
+                            RollPlayer player1 = new RollPlayer(login());
+                            game.addPlayer(player1);
+                        }
                         game.run();
                     } else {
                         // TODO - implement better exception handling
