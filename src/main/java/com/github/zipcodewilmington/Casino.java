@@ -44,7 +44,10 @@ public class Casino implements Runnable {
                 if (isValidLogin) {
                     String gameSelectionInput = getGameSelectionInput().toUpperCase();
                     if (gameSelectionInput.equals("SLOTS")) {
-                        //play(new SlotsGame(), new SlotsPlayer());
+                        SlotsPlayer player = new SlotsPlayer(casinoAccount);
+                        SlotsGame game = new SlotsGame();
+                        game.addPlayer(player);
+                        game.run();
                     } else if (gameSelectionInput.equals("NUMBERGUESS")) {
                         NumberGuessPlayer account = new NumberGuessPlayer(casinoAccount);
                         NumberGuessGame game = new NumberGuessGame();
@@ -55,7 +58,7 @@ public class Casino implements Runnable {
                         WarGame game = new WarGame();
                         game.addPlayer(account);
                         game.run();
-                    } else if(gameSelectionInput.equals("ROLL")){
+                    } else if(gameSelectionInput.equalsIgnoreCase("ROLL")){
                         RollPlayer player = new RollPlayer(casinoAccount);
                         RollGame game = new RollGame();
                         game.addPlayer(player);
