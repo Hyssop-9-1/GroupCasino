@@ -29,10 +29,10 @@ public class SlotsGame implements GameInterface {
         this.player = player;
     }
 
-    public static void main(String[] args) {
-
-        new SlotsGame().run();
-    }
+//    public static void main(String[] args) {
+//
+//        new SlotsGame().run();
+//    }
 
     public int generateRandomNum(){
         randNumber = rand.nextInt(5)+1;
@@ -42,12 +42,11 @@ public class SlotsGame implements GameInterface {
     public String spinAndBuildSlots() throws InterruptedException {
         StringBuilder sb = new StringBuilder();
         int counter = 0;
-        String completedSlots = "";
 
         while (counter < 3){
             String randomIcon = icons[generateRandomNum()];
+            //String randomIcon = icons[1];
             console.print(randomIcon + " ");
-            //completedSlots += randomIcon;
             sb.append(randomIcon);
             sb.append(" ");
             Thread.sleep(2000);
@@ -89,9 +88,6 @@ public class SlotsGame implements GameInterface {
             double bet = console.getDoubleInput(player.getAccountName() + " how much would you like to bet? ");
             player.setCurrentBet(bet);
 
-            //take out the money here
-            player.payToPlay(bet);
-
             //try catch after the player spins the slots and saves the current combination at that instance
             try {
                 player.setCurrentSlotCombination(spinAndBuildSlots());
@@ -102,13 +98,15 @@ public class SlotsGame implements GameInterface {
             //checks the win condition of players current state of combinations
             try {
                 if(checkWinCondition(player.getCurrentSlotCombination())){
-                    console.println("Congratulations " + player.getAccountName() + ", you won, " +
+                    console.println("\nCongratulations " + player.getAccountName() + ", you won, " +
                             (player.getCurrentBet() * 10) + " has been added to your account. ");
                     player.collectWinnings((player.getCurrentBet() * 10));
                     console.println("\n");
                 } else {
                     console.println("\nYou are a sore loser KEKW " + player.getCurrentBet() +
-                            "has been deducted from your account. ");
+                            " has been deducted from your account. ");
+                    //take out the money here
+                    player.payToPlay(player.getCurrentBet());
                     console.println("\n");
                 }
             } catch (InterruptedException e) {
@@ -117,9 +115,6 @@ public class SlotsGame implements GameInterface {
 
         //while the user chooses to spin the wheel (true) keep running through this loop
         } while (player.promptSpin());
-
-        //runningTotal() when player wins add bet amount to running total
-        //cashout ends the game and a adds winnings to account balance
     }
 
     @Override
