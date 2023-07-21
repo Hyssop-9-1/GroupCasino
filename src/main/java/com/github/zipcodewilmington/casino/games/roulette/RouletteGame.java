@@ -8,6 +8,8 @@ import com.github.zipcodewilmington.utils.IOConsole;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 public class RouletteGame implements GameInterface {
     String[] wheel;
@@ -20,6 +22,15 @@ public class RouletteGame implements GameInterface {
  */
 
     public RouletteGame(){
+        System.out.println("Welcome to the Roulette Game!");
+        final int[] RED_NUMBERS = { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
+        final int[] BLACK_NUMBERS = { 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35 };
+        final int MAX_BET = 1000;
+        final int MIN_BET = 1;
+
+        int playerBalance = 1000;
+        final Scanner scanner = new Scanner(System.in);
+        final Random random = new Random();
 
     }
 
