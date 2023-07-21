@@ -50,21 +50,6 @@ public class BlackJackGame implements GameInterface {
         }
         return false;
     }
-
-    public ArrayList<Card> playerHit(){
-        return blackJackPlayer.addPlayerHand(blackJackDeck.deal(1));
-    }
-
-    public boolean userTurn(String userTurn){
-
-        if (userTurn.equalsIgnoreCase("h")){
-            return continueGame = true;
-        }
-        if (userTurn.equalsIgnoreCase("s")){
-            return continueGame = false;
-        }
-        return false;
-    }
     @Override
     public void run() {
 
@@ -172,7 +157,7 @@ public class BlackJackGame implements GameInterface {
 
     @Override
     public void addPlayer(PlayerInterface player) {
-       this.blackJackPlayer = (BlackJackPlayer) player;
+        this.blackJackPlayer = (BlackJackPlayer) player;
     }
 
     @Override
