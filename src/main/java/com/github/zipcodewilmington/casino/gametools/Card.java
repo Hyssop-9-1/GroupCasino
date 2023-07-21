@@ -20,6 +20,11 @@ public class Card {
         return rank;
     }
 
+    public int getValue(){
+        return rank.ordinal()+2; ///MAYBE??!
+    }
+
+    //add toString
     @Override
     public String toString() {
         return  rank + " of " + suit;
