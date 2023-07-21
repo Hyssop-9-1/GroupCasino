@@ -8,6 +8,8 @@ import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
 import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
+import com.github.zipcodewilmington.casino.games.war.WarGame;
+import com.github.zipcodewilmington.casino.games.war.WarPlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
@@ -44,6 +46,11 @@ public class Casino implements Runnable {
                     } else if (gameSelectionInput.equals("NUMBERGUESS")) {
                         NumberGuessPlayer account = new NumberGuessPlayer(casinoAccount);
                         NumberGuessGame game = new NumberGuessGame();
+                        game.addPlayer(account);
+                        game.run();
+                    } else if (gameSelectionInput.equalsIgnoreCase("war")){
+                        WarPlayer account = new WarPlayer(casinoAccount);
+                        WarGame game = new WarGame();
                         game.addPlayer(account);
                         game.run();
                     } else {

@@ -2,4 +2,8 @@
   "username" : "Taylor",
   "password" : "Myers",
   "accountBalance" : -41.0
+}, {
+  "username" : "Liz",
+  "password" : "1123",
+  "accountBalance" : 0.0
 } ]

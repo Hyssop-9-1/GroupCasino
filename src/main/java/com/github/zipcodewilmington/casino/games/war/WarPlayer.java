@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class WarPlayer extends GamblingPlayer {
 
     Deck playerHand= new Deck();
-    Integer playerPoints;
+    Integer playerPoints=0;
     Card currentCard;
 
     public WarPlayer(CasinoAccount acct) {

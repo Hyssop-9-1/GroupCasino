@@ -11,8 +11,10 @@ import com.github.zipcodewilmington.utils.IOConsole;
 
 
 public class WarGame implements GameInterface {
+
     private final IOConsole console = new IOConsole(AnsiColor.CYAN);
-    Deck warDeck = new Deck();
+//    Deck warDeck = new Deck();
+    Deck warDeck;
     int gamePoints = 0;
 
 //    private List<WarPlayer> players = new ArrayList<>();
@@ -32,44 +34,61 @@ public class WarGame implements GameInterface {
                 dealer.addPoints(gamePoints);
                 break;
             case 1: //Player Wins
-                System.out.println(player.getAccountName()+ "wins the hand!");
+                System.out.println(player.getAccountName()+ " wins the hand!");
                 player.addPoints(gamePoints);
                 break;
             case 0: //War!!
-                System.out.println("Go to war!");
+                System.out.println("\nGo to war!");
+                goToWar();
                 break;
         }
         gamePoints=0;
     }
     public void flipCards(WarPlayer player, int numCards){
-        int i =1;
-        do  {
+        for(int i =0; i<numCards;i++){
             player.getTopCard();
             gamePoints += 1;
-            i++;
-        } while (i<=numCards);
-        System.out.println(player.getAccountName()+ " Card: "+player.getCurrentCard().getRank()+ " of "+player.getCurrentCard().getSuit());
+                    }
+        System.out.println(player.getAccountName()+ "'s Card: "+player.getCurrentCard().getRank()+ " of "+player.getCurrentCard().getSuit());
 
+    }
+    public void goToWar(){
+        flipCards(player, 4);
+        flipCards(dealer, 4);
+        compareCards(player.currentCard, dealer.currentCard);
     }
 
     @Override
     public void run() {
-        setup();
-        while (player.playerHand.deckSize() > 0){
-            String input = console.getStringInput(player.getAccountName()+", press [P] to play a card.");
-                if(input.equals("P")){
-                    flipCards(player,1);
+        boolean cont = true;
+        do {
+            setup();
+            while (player.playerHand.deckSize() > 0) {
+                String input = console.getStringInput("\n\n"+player.getAccountName() + ", press [P] to play a card.");
+                if (input.equalsIgnoreCase("p")) {
+                    flipCards(player, 1);
                     flipCards(dealer, 1);
+                    compareCards(player.currentCard, dealer.currentCard);
+                    System.out.println("player: "+player.getPlayerPoints());
 
+                    System.out.println("dealer: "+dealer.getPlayerPoints());
                 }
+            }
+            checkWinCond();
+            String playAgain = console.getStringInput("Play again? [Y]/[N]");
+            if (playAgain.equalsIgnoreCase("n")){
+                cont = false;
+            }
 
-
-
-        }checkWinCond();
+        } while (cont);
 
     }
     @Override
     public void setup() { //shuffle and deal
+        warDeck = new Deck();
+        player.playerPoints =0;
+        dealer.playerPoints=0;
+
         warDeck.shuffle();
         //deal cards...
         player.addPlayerHand(warDeck.deal(26));
@@ -92,7 +111,7 @@ public class WarGame implements GameInterface {
     @Override
     public void checkWinCond() {
         if (player.getPlayerPoints() > dealer.getPlayerPoints()){
-            System.out.println(player.getAccountName()+ "wins!");
+            System.out.println(player.getAccountName()+ " wins!");
         } else {
             System.out.println("Dealer wins.");
         }
