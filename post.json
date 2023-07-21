@@ -8,10 +8,6 @@
   "accountBalance" : 0.0
 
 }, {
-  "username" : "Liz",
-  "password" : "1123",
-  "accountBalance" : 1.0E7
-}, {
   "username" : "Erin",
   "password" : "123",
   "accountBalance" : 1.0000065E7
