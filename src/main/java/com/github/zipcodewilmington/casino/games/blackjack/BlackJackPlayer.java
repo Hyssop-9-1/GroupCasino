@@ -20,7 +20,7 @@ public class BlackJackPlayer extends GamblingPlayer {
     }
 
     public ArrayList<Card> addPlayerHand(ArrayList<Card> cards){
-         playerHand.addCards(cards) = cards;
+         playerHand.addCards(cards);
         return cards;
     }
 
@@ -29,10 +29,15 @@ public class BlackJackPlayer extends GamblingPlayer {
         return currentCard = playerHand.removeTopCard();
     }
 
-//    public Card getCurrentCard(){
-//
-//        for(Deck c: playerHand){
-//
-//        }
-//        return; }
+    public Integer handTotal(){
+        int total = 0;
+        for (Card c: playerHand.getCards()){
+            if (c.getValue() > 10) {
+                total += 10;
+            } else {
+                total += c.getValue();
+            }
+        }
+        return total;
+    }
 }

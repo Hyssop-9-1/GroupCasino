@@ -26,9 +26,17 @@ public class DealerPlayer extends GamblingPlayer {
         return currentCard = dealerHand.removeTopCard();
     }
 
-    public Card getCurrentCard(){
-
-        return currentCard;}
+    public Integer handTotal(){
+        int total = 0;
+        for (Card c: dealerHand.getCards()){
+            if (c.getValue() > 10) {
+                total += 10;
+            } else {
+                total += c.getValue();
+            }
+        }
+        return total;
+    }
 
 
 }
