@@ -25,5 +25,9 @@ public class Card {
     }
 
     //add toString
+    @Override
+    public String toString() {
+        return  rank + " of " + suit;
+    }
 }
 

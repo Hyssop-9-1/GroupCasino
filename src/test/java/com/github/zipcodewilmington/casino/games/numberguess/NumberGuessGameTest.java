@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.casino.games.numberguess;
 
+import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +16,10 @@ class NumberGuessGameTest {
 
     @Test
     void testGenerateRandomNum() {
-        List<NumberGuessPlayer> players = new ArrayList<>();
-        NumberGuessGame game = new NumberGuessGame(players);
+        NumberGuessPlayer player = new NumberGuessPlayer(null);
+        NumberGuessGame game = new NumberGuessGame();
+        game.addPlayer(player);
+
 
         int[] yield = new int[11];
         for (int i = 0; i < 1000; i++) {
