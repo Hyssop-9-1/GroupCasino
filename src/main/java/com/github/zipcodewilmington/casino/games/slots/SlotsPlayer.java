@@ -11,6 +11,8 @@ import com.github.zipcodewilmington.utils.IOConsole;
 public class SlotsPlayer extends GamblingPlayer {
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
 
+    private Double currentBet;
+    private String currentSlotCombination;
 
     public SlotsPlayer(CasinoAccount acct) {
         super(acct);
@@ -18,14 +20,21 @@ public class SlotsPlayer extends GamblingPlayer {
 
     public boolean promptSpin() {
 
-        String userChoice = console.getStringInput("Would you like to spin the wheel? type [y] for yes / [n] for no ");
+        String userChoice = console.getStringInput("Would you like to spin the wheel again? Type [y] for yes / [n] for no: ");
 
-        if (userChoice.equals("y")) {
+        if (userChoice.equalsIgnoreCase("y")) {
             return true;
         }
-        if (userChoice.equals("n")) {
+        if (userChoice.equalsIgnoreCase("n")) {
             return false;
         }
         return false;
     }
+
+    public void setCurrentSlotCombination(String currentSlotCombination) {
+        this.currentSlotCombination = currentSlotCombination;
+    }
+
+    public String getCurrentSlotCombination() {return currentSlotCombination;}
+
 }
