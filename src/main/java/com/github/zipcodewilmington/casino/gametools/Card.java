@@ -5,7 +5,7 @@ import com.github.zipcodewilmington.utils.Suits;
 
 public class Card {
     Suits suit;
-    Rank rank;
+    public Rank rank;
 
 
     public Card(Suits suit, Rank rank){

@@ -34,6 +34,7 @@ public class BlackJackGame implements GameInterface {
 
         new BlackJackGame().run();
 
+
     }
     public void playerHit(){
         blackJackPlayer.addPlayerHand(blackJackDeck.deal(1));
@@ -44,9 +45,11 @@ public class BlackJackGame implements GameInterface {
     public void run() {
 
         setup();
-        Deck blackJackDeck = new Deck();
-        blackJackDeck.shuffle();
         viewTable();
+        viewDealerTable();
+
+        console.print("Your hand total is " + getPlayerHandValue());
+        console.println("Your hand total is " + getDealerHandValue());
         //console.println(String.valueOf(blackJackPlayer.handTotal()));
 //        CasinoAccount playeraccount = new CasinoAccount("Manny", "benji", 1000.00);
 //        CasinoAccount dealeraccount = new CasinoAccount("dealer", "benji", 1000.00);
@@ -74,12 +77,26 @@ public class BlackJackGame implements GameInterface {
     public void viewTable(){
         console.println(blackJackPlayer.viewCard());
     }
+
+    public void viewDealerTable(){
+        console.println((dealerPlayer.viewCard()));
+    }
+
+
+    public Integer getPlayerHandValue(){
+        return blackJackPlayer.handTotal();
+    }
+
+    public Integer getDealerHandValue(){
+        return dealerPlayer.handTotal();
+    }
+
     @Override
     public void setup() {
         blackJackDeck = new Deck();
         blackJackDeck.shuffle();
 
-        console.println(String.valueOf(blackJackPlayer.addPlayerHand(blackJackDeck.deal(2))));
+        blackJackPlayer.addPlayerHand(blackJackDeck.deal(2));
         dealerPlayer.addPlayerHand(blackJackDeck.deal(2));
     }
 

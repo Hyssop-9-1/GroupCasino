@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class DealerPlayer extends GamblingPlayer {
     Deck dealerHand = new Deck();
     Card currentCard;
+
     public DealerPlayer(CasinoAccount acct) {
         super(acct);
         this.dealerHand.emptyDeck();
@@ -21,10 +22,24 @@ public class DealerPlayer extends GamblingPlayer {
         return cards;
     }
 
-    public Card getTopCard(){
-
-        return currentCard = dealerHand.removeTopCard();
+    public String viewCard(){
+        StringBuilder sb = new StringBuilder();
+//        for (Card c: dealerHand.getCards()){
+//            sb.append(" have the " + c.toString() + "\n");
+//        }
+        return ("The dealer currently is showing one card with a value of: " + dealerHand.getCards().get(0));
+                //String.valueOf(sb);
     }
+
+    //method to make sure the dealer values line up with the correct total
+//    public String viewCard1(){
+//        StringBuilder sb = new StringBuilder();
+//        for (Card c: dealerHand.getCards()){
+//            sb.append("The dealer has " + c.toString() + "\n");
+//        }
+//
+//        return String.valueOf(sb);
+//    }
 
     public Integer handTotal(){
         int total = 0;
