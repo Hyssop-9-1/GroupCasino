@@ -1,9 +1,13 @@
 [ {
   "username" : "Taylor",
   "password" : "Myers",
-  "accountBalance" : -71.0
+  "accountBalance" : 100001.0
 }, {
   "username" : "Liz",
   "password" : "1123",
-  "accountBalance" : 0.0
+  "accountBalance" : 1.0E7
+}, {
+  "username" : "Erin",
+  "password" : "123",
+  "accountBalance" : 9999999.0
 } ]
