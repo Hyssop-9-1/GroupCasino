@@ -65,6 +65,7 @@ public class Casino implements Runnable {
                             game.addPlayer(player1);
                         }
                         game.run();
+
                     } else {
                         // TODO - implement better exception handling
                         String errorMessage = "[ %s ] is an invalid game selection";
