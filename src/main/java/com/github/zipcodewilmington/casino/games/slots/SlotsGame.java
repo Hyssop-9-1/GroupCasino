@@ -15,7 +15,7 @@ import java.util.Random;
  */
 public class SlotsGame implements GameInterface {
 
-    private final String[] icons = {"", "APPLE", "7", "$", "BAR", ">_<"};
+    private final String[] icons = { " ", "APPLE", "7", "$", "BAR", ">_<"};
     private final IOConsole console =  new IOConsole(AnsiColor.BLUE);
     Random rand = new Random();
     private int randNumber;
@@ -29,13 +29,10 @@ public class SlotsGame implements GameInterface {
         this.player = player;
     }
 
-//    public static void main(String[] args) {
-//
-//        new SlotsGame().run();
-//    }
+
 
     public int generateRandomNum(){
-        randNumber = rand.nextInt(5)+1;
+        randNumber = rand.nextInt(icons.length -1 ) + 1;
         return randNumber;
     }
 
@@ -45,10 +42,9 @@ public class SlotsGame implements GameInterface {
 
         while (counter < 3){
             String randomIcon = icons[generateRandomNum()];
-            //String randomIcon = icons[1];
+            //String randomIcon = icons[0];
             console.print(randomIcon + " ");
-            sb.append(randomIcon);
-            sb.append(" ");
+            sb.append(randomIcon + " ");
             Thread.sleep(2000);
             counter++;
         }
@@ -58,45 +54,21 @@ public class SlotsGame implements GameInterface {
     public boolean checkWinCondition(String spin) throws InterruptedException {
         String[] arrSlot = spin.split(" ");
         //String arrSlot[] = {"a", "a", "a"};
-
         //checks each position of slot if we want to not hard code values I can come up with a solution
         return arrSlot[0].equals(arrSlot[1]) && (arrSlot[0].equals(arrSlot[2]));
     }
 
     @Override
     public void run() {
-        //CasinoAccount account = new CasinoAccount("manny", "1");
-        //SlotsPlayer player = new SlotsPlayer(account);
-        //SlotsGame game = new SlotsGame();
-//        while (player.promptSpin() != false) {
-//            //take out the money here player.paytoPlay
-//            String result = game.spinAndBuildSlots();
-//            if(game.checkWinCondition(result) == true){
-//                System.out.println("You won");
-//            } else {
-//
-//                System.out.println(result);
-//                System.out.println("You lost");
-//            }
-//        }
-        CasinoAccount account = new CasinoAccount("Manny", "1", 100.00);
-        SlotsPlayer player = new SlotsPlayer(account);
-
+        double bet = console.getDoubleInput(player.getAccountName() + " how much would you like to bet? ");
+        player.setCurrentBet(bet);
         //bet
         do {
-            //Sets current bet
-            double bet = console.getDoubleInput(player.getAccountName() + " how much would you like to bet? ");
-            player.setCurrentBet(bet);
-
-            //try catch after the player spins the slots and saves the current combination at that instance
             try {
+                for(int i = 0; i < 50; i++){console.println(" ");}
+                //spins and sets the string
                 player.setCurrentSlotCombination(spinAndBuildSlots());
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            //checks the win condition of players current state of combinations
-            try {
+                //checks the win condition of players current state of combinations
                 if(checkWinCondition(player.getCurrentSlotCombination())){
                     console.println("\nCongratulations " + player.getAccountName() + ", you won, " +
                             (player.getCurrentBet() * 10) + " has been added to your account. ");
@@ -132,5 +104,6 @@ public class SlotsGame implements GameInterface {
 
     @Override
     public void checkWinCond() {
+
     }
 }
