@@ -53,7 +53,6 @@ public class Casino implements Runnable {
                         NumberGuessGame game = new NumberGuessGame();
                         game.addPlayer(account);
                         game.run();
-
                     } else if (gameSelectionInput.equalsIgnoreCase("war")){
                         WarPlayer account = new WarPlayer(casinoAccount);
                         WarGame game = new WarGame();
@@ -121,7 +120,6 @@ public class Casino implements Runnable {
      */
 
     private CasinoAccount login(){
-
         CasinoAccount account;
         do {
             String accountName = console.getStringInput("Enter your account name:");

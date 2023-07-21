@@ -22,7 +22,6 @@ class NumberGuessGameTest {
         game.addPlayer(player);
 
 
-
         int[] yield = new int[11];
         for (int i = 0; i < 1000; i++) {
             int num = game.generateRandomNum();
