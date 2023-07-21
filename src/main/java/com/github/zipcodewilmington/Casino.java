@@ -6,6 +6,8 @@ import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
+import com.github.zipcodewilmington.casino.games.roll.RollGame;
+import com.github.zipcodewilmington.casino.games.roll.RollPlayer;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
 import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
@@ -46,6 +48,13 @@ public class Casino implements Runnable {
                         NumberGuessGame game = new NumberGuessGame();
                         game.addPlayer(account);
                         game.run();
+                    } else if(gameSelectionInput.equals("ROLL")){
+                        RollPlayer player = new RollPlayer(casinoAccount);
+                        RollPlayer player2 = new RollPlayer(login());
+                        RollGame game = new RollGame();
+                        game.addPlayer(player);
+                        game.addPlayer(player2);
+                        game.run();
                     } else {
                         // TODO - implement better exception handling
                         String errorMessage = "[ %s ] is an invalid game selection";
@@ -83,7 +92,7 @@ public class Casino implements Runnable {
         return console.getStringInput(new StringBuilder()
                 .append("Welcome to the Game Selection Dashboard!")
                 .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ SLOTS ], [ NUMBERGUESS ]")
+                .append("\n\t[ SLOTS ], [ NUMBERGUESS ], [ ROLL ]")
                 .toString());
     }
     /*
@@ -97,8 +106,19 @@ public class Casino implements Runnable {
      */
 
     private CasinoAccount login(){
+        CasinoAccount account;
+        do {
+            String accountName = console.getStringInput("Enter your account name:");
+            String accountPassword = console.getStringInput("Enter your account password:");
+            account = casinoAccountManager.getAccount(accountName, accountPassword);
+        }while(account == null);
+        return account;
+    }
+    private void createAccount(){
+        console.println("Welcome to the account-creation screen.");
         String accountName = console.getStringInput("Enter your account name:");
         String accountPassword = console.getStringInput("Enter your account password:");
-        return casinoAccountManager.getAccount(accountName, accountPassword);
+        CasinoAccount newAccount = casinoAccountManager.createAccount(accountName, accountPassword);
+        casinoAccountManager.registerAccount(newAccount);
     }
 }

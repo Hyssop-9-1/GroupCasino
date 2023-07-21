@@ -17,10 +17,10 @@ public class RollGame implements GameInterface {
     public void run() {
         boolean cont = true;
         do {
+            for(int i = 0; i < 50; i++){console.println("");}
             for (RollPlayer p : players) {
                 String question = p.getAccountName() + ", how many dice would you like to roll? ";
                 p.setCurrentBet(console.getIntegerInput(question));
-                console.println("hi");
                 dice = new Dice((int) p.getCurrentBet());
                 for (RollPlayer player : players) {
                     player.setCurrentRoll(dice.rollAndSum());
