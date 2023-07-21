@@ -17,6 +17,9 @@ public class Dice {
             hold = rand.nextInt(numOfDice*6)+1;
             rounds --;
         }
+        if(hold < numOfDice){
+            return hold+numOfDice;
+        }
         return hold;
     }
 
