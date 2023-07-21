@@ -33,14 +33,6 @@ public class Card {
     public String toString() {
         return  rank + " of " + suit;
     }
-
-//    public String cardDisplay(){
-//      // return cardDisplay[suit.ordinal()][rank.ordinal()];
-//    }
-
-
-
-
     public String cardDisplay(){
         StringBuilder sb = new StringBuilder();
         switch(suit.ordinal()){
@@ -56,7 +48,6 @@ public class Card {
       return sb.toString();
     }
     
-
 //     .--`----.  .-------.  .------.  .------.
 //     |A_  _ |  | A /\  |  |A _   |  |A .   |
 //     |( \/ )|  |  /  \ |  | ( )  |  | / \  |
@@ -64,16 +55,6 @@ public class Card {
 //     |  \/ A|  |   \/ A|  |  Y  A|  |  I  A|
 //     `------'  `-------'  `------'  `------'
 
-
-//    public static void main(String[] args) {
-//        Card card = new Card(Suits.HEARTS,Rank.QUEEN );
-//        //System.out.println(String.format(".------.\n|%-2s_   |\n| ( )  |\n|(_x_) |\n|  Y %-2s|\n`------'\n", "1", "1")); //clubs
-//        //System.out.println(String.format(".------.\n|%-2s  _ |\n|( \\/ )|\n| \\  / |\n|  \\/%-2s|\n`------'\n", "10","10"));//hearts
-//        //System.out.println(String.format(".-------.\n|%-2s /\\  |\n|  /  \\ |\n|  \\  / |\n|   \\/%-2s|\n`-------' \n", "10", "10"));
-//        System.out.println(String.format(".------.\n|%-2s,   |\n| / \\  |\n|(_,_) |\n|  I %-2s|\n`------'", "1", "1"));
-//        //System.out.println(card.rank.getAbbreviation());
-//    }
-=======
 
 }
 
