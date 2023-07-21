@@ -25,20 +25,23 @@ public class BlackJackPlayer extends GamblingPlayer {
     public String viewCard(){
         StringBuilder sb = new StringBuilder();
         for (Card c: playerHand.getCards()){
-            sb.append("Current hand the " + c.getRank() + " of " + c.getSuit());
+            sb.append("You have the " + c.toString() + "\n");
         }
+
         return String.valueOf(sb);
     }
 
     public Integer handTotal(){
         int total = 0;
         for (Card c: playerHand.getCards()){
-            if (c.getValue() > 10) {
-                total += 10;
-            } else {
-                total += c.getValue();
-            }
+            total += c.rank.getBlackJackValue();
+//            if (c.getValue() > 10) {
+//                total += 10;
+//            } else {
+//                total += c.getValue();
+//            }
         }
+
         return total;
     }
 }
