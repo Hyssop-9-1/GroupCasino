@@ -56,6 +56,7 @@ public class WarGame implements GameInterface {
             }
 
         System.out.println(player.getAccountName() + "'s Card: " + player.getCurrentCard().getRank() + " of " + player.getCurrentCard().getSuit());
+        System.out.println(player.getCurrentCard().cardDisplay());
 
     }
 
