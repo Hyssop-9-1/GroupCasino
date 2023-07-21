@@ -34,13 +34,21 @@ public class BlackJackGame implements GameInterface {
 
     public static void main(String[] args) {
         new BlackJackGame().run();
-
-
     }
-    public void playerHit(){
-        blackJackPlayer.addPlayerHand(blackJackDeck.deal(1));
-        console.println(String.valueOf(blackJackPlayer.handTotal()));
 
+    public ArrayList<Card> playerHit(){
+        return blackJackPlayer.addPlayerHand(blackJackDeck.deal(1));
+    }
+
+    public boolean userTurn(String userTurn){
+
+        if (userTurn.equalsIgnoreCase("h")){
+            return continueGame = true;
+        }
+        if (userTurn.equalsIgnoreCase("s")){
+            return continueGame = false;
+        }
+        return false;
     }
 
     public ArrayList<Card> playerHit(){
