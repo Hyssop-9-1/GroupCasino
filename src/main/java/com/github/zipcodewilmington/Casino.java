@@ -58,7 +58,9 @@ public class Casino implements Runnable {
                         WarGame game = new WarGame();
                         game.addPlayer(account);
                         game.run();
+
                     } else if(gameSelectionInput.equalsIgnoreCase("ROLL")){
+
                         RollPlayer player = new RollPlayer(casinoAccount);
                         RollGame game = new RollGame();
                         game.addPlayer(player);
@@ -68,6 +70,7 @@ public class Casino implements Runnable {
                             game.addPlayer(player1);
                         }
                         game.run();
+
 
                     } else {
                         // TODO - implement better exception handling
@@ -106,7 +109,9 @@ public class Casino implements Runnable {
         return console.getStringInput(new StringBuilder()
                 .append("Welcome to the Game Selection Dashboard!")
                 .append("\nFrom here, you can select any of the following options:")
+
                 .append("\n\t[ SLOTS ], [ NUMBERGUESS ], [ WAR ], [ ROLL ]")
+
                 .toString());
     }
     /*

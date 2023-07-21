@@ -8,6 +8,7 @@ public class Card {
     public Rank rank;
 
 
+
     public Card(Suits suit, Rank rank){
         this.suit = suit;
         this.rank = rank;
@@ -25,16 +26,36 @@ public class Card {
         return rank.ordinal()+2; ///MAYBE??!
     }
 
+
+
     //add toString
     @Override
     public String toString() {
         return  rank + " of " + suit;
     }
+
 //    public String cardDisplay(){
 //      // return cardDisplay[suit.ordinal()][rank.ordinal()];
 //    }
 
 
+
+
+    public String cardDisplay(){
+        StringBuilder sb = new StringBuilder();
+        switch(suit.ordinal()){
+            case 0: sb.append(String.format(".------.\n|%-2s_   |\n| ( )  |\n|(_x_) |\n|  Y %-2s|\n`------'\n", rank.getAbbreviation(), rank.getAbbreviation()));
+                    break;
+            case 1: sb.append(String.format(".------.\n|%-2s  _ |\n|( \\/ )|\n| \\  / |\n|  \\/%-2s|\n`------'\n", rank.getAbbreviation(),rank.getAbbreviation()));
+                    break;
+            case 2: sb.append(String.format(".-------.\n|%-2s /\\  |\n|  /  \\ |\n|  \\  / |\n|   \\/%-2s|\n`-------' \n", rank.getAbbreviation(), rank.getAbbreviation()));
+                    break;
+            case 3: sb.append(String.format(".------.\n|%-2s,   |\n| / \\  |\n|(_,_) |\n|  I %-2s|\n`------'\n", rank.getAbbreviation(), rank.getAbbreviation()));
+                    break;
+        }
+      return sb.toString();
+    }
+    
 
 //     .--`----.  .-------.  .------.  .------.
 //     |A_  _ |  | A /\  |  |A _   |  |A .   |
@@ -42,6 +63,7 @@ public class Card {
 //     | \  / |  |  \  / |  |(_x_) |  |(_,_) |
 //     |  \/ A|  |   \/ A|  |  Y  A|  |  I  A|
 //     `------'  `-------'  `------'  `------'
+
 
 //    public static void main(String[] args) {
 //        Card card = new Card(Suits.HEARTS,Rank.QUEEN );
@@ -51,5 +73,7 @@ public class Card {
 //        System.out.println(String.format(".------.\n|%-2s,   |\n| / \\  |\n|(_,_) |\n|  I %-2s|\n`------'", "1", "1"));
 //        //System.out.println(card.rank.getAbbreviation());
 //    }
+=======
+
 }
 
