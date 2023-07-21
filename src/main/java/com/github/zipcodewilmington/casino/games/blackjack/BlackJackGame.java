@@ -3,9 +3,13 @@ package com.github.zipcodewilmington.casino.games.blackjack;
 import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
+import com.github.zipcodewilmington.casino.games.roll.RollPlayer;
+import com.github.zipcodewilmington.casino.games.war.WarPlayer;
 import com.github.zipcodewilmington.casino.gametools.Deck;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
+
+import java.util.ArrayList;
 
 public class BlackJackGame implements GameInterface {
 
@@ -14,12 +18,20 @@ public class BlackJackGame implements GameInterface {
     Deck blackJackDeck;
 
 
-    private BlackJackPlayer userPlayer;
-    private DealerPlayer dealerPlayer;
+    ArrayList<BlackJackPlayer> userPlayer = new ArrayList<>();
+
+    CasinoAccount dealeraccount = new CasinoAccount("dealer", "benji", 1000.00);
+    DealerPlayer dealerPlayer = new DealerPlayer(dealeraccount);
 
     public static void main(String[] args) {
 
         new BlackJackGame().run();
+
+    }
+    public void playerHit(){
+        userPlayer.addPlayerHand(blackJackDeck.deal(1));
+        console.println(String.valueOf(userPlayer.handTotal()));
+
     }
     @Override
     public void run() {
@@ -31,12 +43,21 @@ public class BlackJackGame implements GameInterface {
         BlackJackPlayer player = new BlackJackPlayer(playeraccount);
         DealerPlayer dealer = new DealerPlayer(dealeraccount);
 
-        Deck playerHand = player.playerHand;
-        System.out.println(player.addPlayerHand(blackJackDeck.deal(2)));
-        System.out.println(dealer.addPlayerHand(blackJackDeck.deal(2)));
-        System.out.println(player.playerHandValue);
-        //System.out.println(player.getCurrentCard().getBlackJackValue());
-        //console.println(player.addPlayerHand(blackJackDeck.deal(2)));
+
+        String userChoice = console.getStringInput("Would you like to hit or stay ? ");
+
+        if (userChoice.equalsIgnoreCase("hit")){
+            playerHit();
+            player.handTotal();
+        }
+//        console.println(String.valueOf(player.addPlayerHand(blackJackDeck.deal(2))));
+//        System.out.println(dealer.addPlayerHand(blackJackDeck.deal(2)));
+//        System.out.println(player.handTotal());
+//        console.println(String.valueOf(player.addPlayerHand(blackJackDeck.deal(1))));
+//        System.out.println(player.handTotal());
+//
+//        console.println(String.valueOf(dealer.addPlayerHand(blackJackDeck.deal(2))));
+//        System.out.println(dealer.handTotal());
     }
 
     @Override
@@ -46,6 +67,7 @@ public class BlackJackGame implements GameInterface {
 
     @Override
     public void addPlayer(PlayerInterface player) {
+        userPlayer.add((BlackJackPlayer) player);
 
     }
 
