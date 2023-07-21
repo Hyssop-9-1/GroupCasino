@@ -32,7 +32,7 @@ class DeckTest {
 
         int expected = 53;
         deck.addCards(c1);
-        int actual = deck.size();
+        int actual = deck.deckSize();
 
         assertEquals(expected, actual);
     }
@@ -48,7 +48,7 @@ class DeckTest {
 
         int expected = 55;
         deck.addCards(cardsList);
-        int actual = deck.size();
+        int actual = deck.deckSize();
 
         assertEquals(expected, actual);
     }
@@ -59,7 +59,7 @@ class DeckTest {
         deck.removeTopCard();
 
         int expected = 51;
-        int actual = deck.size();
+        int actual = deck.deckSize();
 
         assertEquals(expected, actual);
     }
@@ -70,7 +70,7 @@ class DeckTest {
         deck.emptyDeck();
 
         int expected = 0;
-        int actual = deck.size();
+        int actual = deck.deckSize();
 
         assertEquals(expected, actual);
     }
@@ -82,8 +82,8 @@ class DeckTest {
         deck1.emptyDeck();
         deck1.addCards(deck.deal(26));
 
-        int expected = deck1.size();
-        int actual = deck.size();
+        int expected = deck1.deckSize();
+        int actual = deck.deckSize();
 
         assertEquals(expected, actual);
     }
@@ -95,8 +95,8 @@ class DeckTest {
         deck1.emptyDeck();
         deck1.addCards(deck.deal(26));
 
-        int expected = deck1.size();
-        int actual = deck.size();
+        int expected = deck1.deckSize();
+        int actual = deck.deckSize();
 
         assertEquals(expected, actual);
     }
