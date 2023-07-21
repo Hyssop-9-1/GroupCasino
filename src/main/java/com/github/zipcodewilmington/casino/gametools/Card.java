@@ -25,10 +25,6 @@ public class Card {
     }
 
 
-//    public int getBlackJackValue(){
-//
-//    }
-
 
     //add toString
     @Override
