@@ -42,8 +42,6 @@ public class BlackJackPlayer extends GamblingPlayer {
 //            }
         }
 
-        //check for ace or none
-
         return total;
     }
 }

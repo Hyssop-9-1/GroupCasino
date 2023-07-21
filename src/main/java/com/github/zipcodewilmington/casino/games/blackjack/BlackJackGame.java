@@ -33,13 +33,15 @@ public class BlackJackGame implements GameInterface {
     DealerPlayer dealerPlayer = new DealerPlayer(dealerAccount);
 
     public static void main(String[] args) {
+
         new BlackJackGame().run();
-    }
 
-    public ArrayList<Card> playerHit(){
-        return blackJackPlayer.addPlayerHand(blackJackDeck.deal(1));
-    }
 
+    }
+    public void playerHit() {
+        blackJackPlayer.addPlayerHand(blackJackDeck.deal(1));
+        console.println(String.valueOf(blackJackPlayer.handTotal()));
+    }
     public boolean userTurn(String userTurn){
 
         if (userTurn.equalsIgnoreCase("h")){
@@ -134,7 +136,7 @@ public class BlackJackGame implements GameInterface {
     }
 
     public void viewDealerTable(){
-        console.println((dealerPlayer.viewCard1()));
+        console.println((dealerPlayer.viewCard()));
     }
 
 
@@ -157,7 +159,7 @@ public class BlackJackGame implements GameInterface {
 
     @Override
     public void addPlayer(PlayerInterface player) {
-        this.blackJackPlayer = (BlackJackPlayer) player;
+       this.blackJackPlayer = (BlackJackPlayer) player;
     }
 
     @Override
@@ -167,5 +169,6 @@ public class BlackJackGame implements GameInterface {
 
     @Override
     public void checkWinCond() {
+
     }
 }
