@@ -34,6 +34,12 @@ public class BlackJackGame implements GameInterface {
 
     public static void main(String[] args) {
         new BlackJackGame().run();
+
+    }
+    public void playerHit(){
+        userPlayer.addPlayerHand(blackJackDeck.deal(1));
+        console.println(String.valueOf(userPlayer.handTotal()));
+
     }
 
     public ArrayList<Card> playerHit(){
