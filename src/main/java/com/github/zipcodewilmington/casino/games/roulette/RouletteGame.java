@@ -66,11 +66,22 @@ public class RouletteGame implements GameInterface {
         return betAmount;
     }
 
-    
 
     private int spinRoulette() {
-        return 0;
+        int betType;
+        do {
+            System.out.println("Select your bet type:");
+            System.out.println("1. Bet on a number (payout 35:1)");
+            System.out.println("2. Bet on red (payout 1:1)");
+            System.out.println("3. Bet on black (payout 1:1)");
+            Random scanner = null;
+            betType = scanner.nextInt();
+        } while (betType < 1 || betType > 3);
+
+        return betType;
     }
+
+
 
     private int getValidBetType() {
         return 0;
