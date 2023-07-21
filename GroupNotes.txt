@@ -1,2 +1,8 @@
+
+(Liz, 7/19/23 )Return to question about bets vs payToPlay in GamblingPlayer interface.  Is this a necessary distinction?
+(Manny, 7/20/23) Ask about win cond for slots if we wanna hard code values or create method so its more modular
+Manny - slots does not ask the player to spin the wheel on the first turn. Also cant fix the scuffed test, testing the method prompt spin in the SlotsPlayer class
+
 (Liz, 7/19/23) Return to question about bets vs payToPlay in GamblingPlayer interface.  Is this a necessary distinction?
 (Liz, 7/20/23) Add options to add more players in the Casino app.  Suggest recommended player # for the game.
+
