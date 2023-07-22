@@ -25,7 +25,6 @@ public class BlackJackGame implements GameInterface {
 //        this.blackJackPlayer = player;
 //    }
 
-
     CasinoAccount playerAccount = new CasinoAccount("manny", "benji", 1000.00);
     BlackJackPlayer blackJackPlayer = new BlackJackPlayer(playerAccount);
     CasinoAccount dealerAccount = new CasinoAccount("dealer", "benji", 1000.00);
@@ -34,67 +33,16 @@ public class BlackJackGame implements GameInterface {
     public static void main(String[] args) {
         new BlackJackGame().run();
     }
+
     public ArrayList<Card> playerHit() {
         return blackJackPlayer.addPlayerHand(blackJackDeck.deal(1));
     }
+
     public ArrayList<Card> dealerHit() {
         return dealerPlayer.addPlayerHand(blackJackDeck.deal(1));
     }
 
-    @Override
-    public void run() {
-
-        boolean continueGame = true;
-
-        while (continueGame)
-        {
-            double bet = console.getDoubleInput(blackJackPlayer.getAccountName() + " how much would you like to bet? ");
-            blackJackPlayer.setCurrentBet(bet);
-
-            setup(); viewTable(); viewPlayerTurn();
-
-
-
-            String userTurn = console.getStringInput("Would you like to hit or stand? Press [h] to hit / [s] to stand ");
-            checkPlayerWinCondition(userTurn);
-            dealerPlay();
-
-            int playerTotal = getPlayerHandValue();
-            int dealerTotal = getDealerHandValue();
-
-            if (decideWinner(playerTotal, dealerTotal)){
-                console.println((blackJackPlayer.getCurrentBet() * 10) + " has been added to your account. ");
-                blackJackPlayer.collectWinnings(blackJackPlayer.getCurrentBet() * 5);
-            } else {
-                blackJackPlayer.payToPlay(blackJackPlayer.getCurrentBet()); // Deduct the bet from the player's account
-            }
-//
-//            if (blackJackPlayer.handTotal() > dealerPlayer.handTotal() && blackJackPlayer.handTotal() <= 21)
-//            {
-//                console.println("\nCongratulations " + blackJackPlayer.getAccountName() + ", you won, " +
-//                        (blackJackPlayer.getCurrentBet() * 10) + " has been added to your account. ");
-//                blackJackPlayer.collectWinnings((blackJackPlayer.getCurrentBet() * 10));
-//                console.println("\n");
-//            }
-//            else if (dealerPlayer.handTotal() > blackJackPlayer.handTotal() && dealerPlayer.handTotal() <= 21)
-//            {
-//                console.println("\nYou are a sore loser KEKW " + blackJackPlayer.getCurrentBet() +
-//                        " has been deducted from your account. ");
-//                //take out the money here
-//                blackJackPlayer.payToPlay(blackJackPlayer.getCurrentBet());
-//                console.println("\n");
-//            } else
-//            {
-//                System.out.println("got here at the end ");
-//            }
-
-            String userChoice = console.getStringInput("Hi " + blackJackPlayer.getAccountName() + " would you like to play again? [y] for yes / [n] for no ");
-            continueGame = continuePlaying(userChoice);
-        }
-    }
-
-    public boolean decideWinner(int playerTotal, int dealerTotal)
-    {
+    public boolean decideWinner(int playerTotal, int dealerTotal) {
         if (playerTotal > 21)
         {
             console.println("\nYou busted. Better luck next time!\n");
@@ -127,9 +75,7 @@ public class BlackJackGame implements GameInterface {
         return false;
     }
 
-
-    public boolean checkPlayerWinCondition(String input)
-    {
+    public boolean playerGameplayLoop(String input) {
         //checks the string input from the user
         while (!input.equalsIgnoreCase("s"))
         {
@@ -141,9 +87,11 @@ public class BlackJackGame implements GameInterface {
                 viewPlayerTurn();
                 if (getPlayerHandValue() >= 21)
                 {
+                    //busts exit out of loop
                     return false;
                 }
-            } else
+            }
+            else
             {
                 console.getStringInput("Invalid input. Please enter [h] to hit / [s] to stand dummy \n");
             }
@@ -155,37 +103,36 @@ public class BlackJackGame implements GameInterface {
         return false;
     }
 
+    //dealers turn to try and beat the player used 17 as a hard cap because it was doing some weird stuff errors like index out of bounds and adding all the cards in the deck to dealer hand
     public void dealerPlay() {
         while (dealerPlayer.handTotal() < 17 && dealerPlayer.handTotal() <= 21) {
             dealerHit();
         }
-        //console.println("The Dealer has a total of " + getDealerHandValue());
-        //viewDealerTable();
-        //return dealerPlayer.handTotal();
     }
 
-
-
-    public boolean continuePlaying(String userInput){
-        if (userInput.equalsIgnoreCase("y")){
+    public boolean continuePlaying(String userInput) {
+        if (userInput.equalsIgnoreCase("y"))
+        {
             return true;
         }
         return false;
     }
 
+    //player turn shows the player their hand total and the dealer hand total showing one card
     public void viewPlayerTurn(){
         console.println("Your current hand value is: " + getPlayerHandValue());
         console.println(dealerPlayer.viewOneCardFromDealer());
     }
 
+    //tells the player all the cards they have in the form of "Rank of Suit"
     public void viewTable(){
         console.println(blackJackPlayer.viewCard());
     }
 
+    //calls method in DealerPlayer class to show all the cards the dealer has
     public void viewDealerTable(){
         console.println((dealerPlayer.fullReveal()));
     }
-
 
     public Integer getPlayerHandValue(){
         return blackJackPlayer.handTotal();
@@ -195,9 +142,44 @@ public class BlackJackGame implements GameInterface {
         return dealerPlayer.handTotal();
     }
 
+    //empty both the dealer and players hands putting total hand values back at zero
     public void resetHands(){
         blackJackPlayer.playerHand.emptyDeck();
         dealerPlayer.dealerHand.emptyDeck();
+    }
+
+    @Override
+    public void run() {
+
+        boolean continueGame = true;
+
+        while (continueGame)
+        {
+            double bet = console.getDoubleInput(blackJackPlayer.getAccountName() + " how much would you like to bet? ");
+            blackJackPlayer.setCurrentBet(bet);
+
+            setup(); viewTable(); viewPlayerTurn();
+
+            String userTurn = console.getStringInput("Would you like to hit or stand? Press [h] to hit / [s] to stand ");
+            playerGameplayLoop(userTurn);
+            dealerPlay();
+
+            //overcooked this part of the game, next time try to break it into smaller pieces, trying to do too much at the same time checking for different scenarios at the same time
+            //as well as trying to compare values at the same time when the dealer hasnt had a turn yet, also you tried to simplify too hard to the dealer winning or the player winning but you didnt account
+            //that there are different ways for the dealer and player to win
+            //take in value from POINT A then take in value from POINT B then pass those down in a method where you are free to overcook it,
+            //lastly you overcooked so hard that the methods like playerGamePlayLoop dealerPlay and decideWinner all had overlapping functionality that made it hard to debug where you were in the code
+            //try and write single RESPONSIBILITY methods
+            if (decideWinner(getPlayerHandValue(), getDealerHandValue())){
+                console.println((blackJackPlayer.getCurrentBet() * 5) + " has been added to your account. ");
+                blackJackPlayer.collectWinnings(blackJackPlayer.getCurrentBet() * 5);
+            } else {
+                blackJackPlayer.payToPlay(blackJackPlayer.getCurrentBet()); // Deduct the bet from the player's account
+            }
+
+            String userChoice = console.getStringInput("Hi " + blackJackPlayer.getAccountName() + " would you like to play again? [y] for yes / [n] for no ");
+            continueGame = continuePlaying(userChoice);
+        }
     }
 
     @Override
@@ -213,7 +195,7 @@ public class BlackJackGame implements GameInterface {
 
     @Override
     public void addPlayer(PlayerInterface player) {
-       this.blackJackPlayer = (BlackJackPlayer) player;
+        this.blackJackPlayer = (BlackJackPlayer) player;
     }
 
     @Override
