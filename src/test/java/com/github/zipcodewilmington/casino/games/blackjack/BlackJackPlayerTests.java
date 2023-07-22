@@ -13,30 +13,62 @@ import java.util.ArrayList;
 
 public class BlackJackPlayerTests {
 
-
+    //ask about how to instantiate player hand for tests
     @Test
     void testAceValueChecker(){
         Deck playerHand = new Deck();
         playerHand.emptyDeck();
         playerHand.addCards(new Card(Suits.DIAMONDS, Rank.ACE));
+        CasinoAccount account = new CasinoAccount("Manny", "Benji");
+        BlackJackPlayer player = new BlackJackPlayer(account);
 
         int expected = 11;
 
-        int total = 5;
-        int tempTotal = total;
+        int actual = player.handTotal() + 1;
+        int tempTotal = actual;
         for (Card c: playerHand.getCards()){
             if (c.rank.getAbbreviation().equals("A"))
             {
-                if ((tempTotal += 11) > 21 ){
-                    total += c.rank.getBlackJackValue();
-                } else {
-                    total += 11;
+                if ((tempTotal + 11) <= 21 ){
+                    actual += 11;
+                    break;
+                } else
+                {
+                    actual += c.rank.getBlackJackValue();
                     break;
                 }
             }
-            total += c.rank.getBlackJackValue();
+            actual += c.rank.getBlackJackValue();
         };
+        assertEquals(expected, actual);
+    }
 
-        assertEquals(expected, total);
+    @Test
+    void testHandTotal(){
+        Deck playerHand = new Deck();
+        playerHand.emptyDeck();
+        playerHand.addCards(new Card(Suits.DIAMONDS, Rank.EIGHT));
+        CasinoAccount account = new CasinoAccount("Manny", "Benji");
+        BlackJackPlayer player = new BlackJackPlayer(account);
+
+        int expected = 8;
+
+        int actual = player.handTotal();
+        int tempTotal = actual;
+        for (Card c: playerHand.getCards()){
+            if (c.rank.getAbbreviation().equals("A"))
+            {
+                if ((tempTotal + 11) > 21 ){
+                    actual += c.rank.getBlackJackValue();
+                    break;
+                } else
+                {
+                    actual += 11;
+                    break;
+                }
+            }
+            actual += c.rank.getBlackJackValue();
+        };
+        assertEquals(expected, actual);
     }
 }

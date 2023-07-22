@@ -20,6 +20,7 @@ public class BlackJackPlayer extends GamblingPlayer {
          playerHand.addCards(cards);
         return cards;
     }
+
     public String viewCard(){
         StringBuilder sb = new StringBuilder();
         for (Card c: playerHand.getCards()){
@@ -31,13 +32,17 @@ public class BlackJackPlayer extends GamblingPlayer {
 
     public Integer handTotal(){
         int total = 0;
+        int tempTotal = total;
         for (Card c: playerHand.getCards()){
             if (c.rank.getAbbreviation().equals("A"))
             {
-                if ((total += 11) > 21 ){
-                    total += c.rank.getBlackJackValue();
-                } else {
+                if ((tempTotal + 11) <= 21 ){
                     total += 11;
+                    break;
+                } else
+                {
+                    total += c.rank.getBlackJackValue();
+                    break;
                 }
             }
             total += c.rank.getBlackJackValue();
