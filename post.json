@@ -1,7 +1,11 @@
 [ {
   "username" : "Taylor",
   "password" : "Myers",
+<<<<<<< HEAD
+  "accountBalance" : 100001.0
+=======
   "accountBalance" : 482278.0
+>>>>>>> upstream/master
 }, {
   "username" : "Liz",
   "password" : "1123",
