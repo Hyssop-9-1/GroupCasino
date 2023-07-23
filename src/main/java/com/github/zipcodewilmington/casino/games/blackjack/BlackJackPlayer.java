@@ -32,20 +32,24 @@ public class BlackJackPlayer extends GamblingPlayer {
 
     public Integer handTotal(){
         int total = 0;
-        int tempTotal = total;
+        int numOfAces = 0;
         for (Card c: playerHand.getCards()){
             if (c.rank.getAbbreviation().equals("A"))
             {
-                if ((tempTotal + 11) <= 21 ){
-                    total += 11;
-                    break;
-                } else
-                {
-                    total += c.rank.getBlackJackValue();
-                    break;
-                }
+                numOfAces++;
             }
             total += c.rank.getBlackJackValue();
+        }
+        if (numOfAces > 0)
+        {
+            if ((total + 11) <= 21 )
+            {
+                total += 11;
+            }
+            else
+            {
+                total += 1;
+            }
         }
         return total;
     }
