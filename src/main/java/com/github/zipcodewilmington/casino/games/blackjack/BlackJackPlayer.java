@@ -11,8 +11,6 @@ public class BlackJackPlayer extends GamblingPlayer {
 
     Deck playerHand = new Deck();
 
-    Card currentCard;
-
     public BlackJackPlayer(CasinoAccount acct) {
         super(acct);
         this.playerHand.emptyDeck();
@@ -22,6 +20,7 @@ public class BlackJackPlayer extends GamblingPlayer {
          playerHand.addCards(cards);
         return cards;
     }
+
     public String viewCard(){
         StringBuilder sb = new StringBuilder();
         for (Card c: playerHand.getCards()){
@@ -33,15 +32,25 @@ public class BlackJackPlayer extends GamblingPlayer {
 
     public Integer handTotal(){
         int total = 0;
+        int numOfAces = 0;
         for (Card c: playerHand.getCards()){
+            if (c.rank.getAbbreviation().equals("A"))
+            {
+                numOfAces++;
+            }
             total += c.rank.getBlackJackValue();
-//            if (c.getValue() > 10) {
-//                total += 10;
-//            } else {
-//                total += c.getValue();
-//            }
         }
-
+        if (numOfAces > 0)
+        {
+            if ((total + 11) <= 21 )
+            {
+                total += 11;
+            }
+            else
+            {
+                total += 1;
+            }
+        }
         return total;
     }
 }
