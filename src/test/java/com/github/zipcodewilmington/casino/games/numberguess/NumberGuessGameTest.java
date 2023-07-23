@@ -34,5 +34,45 @@ class NumberGuessGameTest {
         }
     }
 
+    @Test
+    void testWinCondition(){
+        NumberGuessGame game = new NumberGuessGame();
+        game.randNumber = 10;
+        NumberGuessPlayer player = new NumberGuessPlayer(null);
+        player.setCurrentGuess(10);
+
+        assertTrue(game.checkWinCond(player));
+    }
+    @Test
+    void testWinCondition2(){
+        NumberGuessGame game = new NumberGuessGame();
+        game.randNumber = 100;
+        NumberGuessPlayer player = new NumberGuessPlayer(null);
+        player.setCurrentGuess(100);
+
+        assertTrue(game.checkWinCond(player));
+    }
+    @Test
+    void testWinCondition3(){
+        NumberGuessGame game = new NumberGuessGame();
+        game.randNumber = 10000;
+        NumberGuessPlayer player = new NumberGuessPlayer(null);
+        player.setCurrentGuess(10000);
+
+        assertTrue(game.checkWinCond(player));
+    }
+
+    @Test
+    void testSetup(){
+        NumberGuessGame game = new NumberGuessGame();
+
+        int expected = 0;
+        assertEquals(expected, game.randNumber);
+
+        game.setup();
+
+        assertTrue(game.randNumber>0);
+
+    }
 
 }

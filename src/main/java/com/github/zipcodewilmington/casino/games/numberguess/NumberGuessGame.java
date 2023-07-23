@@ -78,7 +78,7 @@ public class NumberGuessGame implements GameInterface {
 
     public void checkWinCond() {
         for(NumberGuessPlayer p : players){
-            if(p.getCurrentGuess() == randNumber){
+            if(checkWinCond(p)){
                 console.println(p.getAccountName()+ ", you have guessed correctly! $" + (p.getCurrentBet() * 10) + " has been added to your account." );
                 p.collectWinnings((p.getCurrentBet() * 10));
             }
@@ -88,7 +88,9 @@ public class NumberGuessGame implements GameInterface {
             }
         }
     }
-
+    public boolean checkWinCond(NumberGuessPlayer player){
+        return player.getCurrentGuess() == randNumber;
+    }
 
 
 }

@@ -17,4 +17,5 @@ public enum Rank {
     public int getBlackJackValue() {
         return blackJackValue;
     }
+
 }

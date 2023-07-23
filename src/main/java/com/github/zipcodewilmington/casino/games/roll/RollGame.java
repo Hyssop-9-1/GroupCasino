@@ -15,7 +15,7 @@ public class RollGame implements GameInterface {
     Dice dice;
     @Override
     public void run() {
-        boolean cont = true;
+        String yesNo;
         do {
             for(int i = 0; i < 50; i++){console.println("");}
             for (RollPlayer p : players) {
@@ -33,10 +33,12 @@ public class RollGame implements GameInterface {
                 }
                 checkWinCond();
             }
-            if(console.getStringInput("Play again? y/n").equalsIgnoreCase("n")){
-                cont = false;
-            }
-        }while(cont);
+            yesNo = console.getStringInput("Play again? y/n: ");
+        }while(cont(yesNo));
+    }
+
+    public boolean cont(String yesNo){
+        return yesNo.equalsIgnoreCase("y");
     }
 
     @Override
@@ -54,28 +56,42 @@ public class RollGame implements GameInterface {
 
     }
 
-    @Override
-    public void checkWinCond() {
+    public RollPlayer getHighestRoll(ArrayList<RollPlayer> players){
         int indexOfHighest = 0;
         int hold = 0;
-        int indexOfLowest = 0;
+
         for(RollPlayer p: players){
             if(p.getCurrentRoll() > hold){
                 hold = p.getCurrentRoll();
                 indexOfHighest = players.indexOf(p);
             }
         }
-        for(RollPlayer p: players){
-            if(p.getCurrentRoll()< hold){
-                hold = p.getCurrentRoll();
-                indexOfLowest = players.indexOf(p);
+        return players.get(indexOfHighest);
+    }
+    public RollPlayer getLowestRoll(ArrayList<RollPlayer> players){
+        int hold = Integer.MAX_VALUE;
+        int indexOfLowest = 0;
+        for(int i = 0; i < 4; i++) {
+            for (RollPlayer p : players) {
+                if (p.getCurrentRoll() < hold) {
+                    hold = p.getCurrentRoll();
+                    indexOfLowest = players.indexOf(p);
+                }
             }
         }
-        int moneyToTransfer = players.get(indexOfHighest).getCurrentRoll() - players.get(indexOfLowest).getCurrentRoll();
-        console.println(players.get(indexOfLowest).getAccountName()+ " owes "
-                + players.get(indexOfHighest).getAccountName()+ " $" + moneyToTransfer);
-        players.get(indexOfLowest).payToPlay(moneyToTransfer);
-        players.get(indexOfHighest).collectWinnings(moneyToTransfer);
+        return players.get(indexOfLowest);
+    }
+
+
+    @Override
+    public void checkWinCond() {
+        RollPlayer highest = getHighestRoll(players);
+        RollPlayer lowest = getLowestRoll(players);
+        int moneyToTransfer = highest.getCurrentRoll() - lowest.getCurrentRoll();
+        console.println(lowest.getAccountName()+ " owes "
+                + highest.getAccountName()+ " $" + moneyToTransfer);
+        lowest.payToPlay(moneyToTransfer);
+        highest.collectWinnings(moneyToTransfer);
     }
 
 }
