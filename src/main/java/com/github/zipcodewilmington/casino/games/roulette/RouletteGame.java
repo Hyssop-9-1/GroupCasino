@@ -84,9 +84,44 @@ public class RouletteGame implements GameInterface {
 
 
     private int getValidBetType() {
+
+        int chosenNumber = getValidChosenNumber();
+        int winningNumber = 21;
+        int betAmount = 50;
+        if (chosenNumber == winningNumber) {
+            int winnings = betAmount * 35;
+            playerBalance += winnings;
+            System.out.println("Congratulations! You won $" + winnings);
+        } else {
+            playerBalance -= 950;
+            System.out.println("Sorry, you lost $" + betAmount);
+        }
+
         return 0;
     }
 
+    private int getValidChosenNumber() {
+        byte winningNumber;
+        winningNumber = 5;
+        int betAmount = 200;
+        if (winningNumber == 21 || winningNumber == 21 || isBlack(winningNumber)) {
+            playerBalance += betAmount;
+            System.out.println("Congratulations! You won $" + betAmount);
+        } else {
+            playerBalance -= 800;
+            System.out.println("Sorry, you lost $" + betAmount);
+        }
+
+        return 0;
+    }
+
+    private boolean isBlack(byte winningNumber) {
+
+
+
+
+        return false;
+    }
 
 
 
