@@ -12,6 +12,10 @@ public class BlackJackPlayer extends GamblingPlayer {
     Deck playerHand = new Deck();
 
     Card currentCard;
+<<<<<<< HEAD
+=======
+    ArrayList<Card> playerHandValue = new ArrayList<>();
+>>>>>>> bfc8276 (blackjack so far)
 
     public BlackJackPlayer(CasinoAccount acct) {
         super(acct);
@@ -19,6 +23,7 @@ public class BlackJackPlayer extends GamblingPlayer {
     }
 
     public ArrayList<Card> addPlayerHand(ArrayList<Card> cards){
+<<<<<<< HEAD
          playerHand.addCards(cards);
         return cards;
     }
@@ -44,4 +49,21 @@ public class BlackJackPlayer extends GamblingPlayer {
 
         return total;
     }
+=======
+         playerHand.addCards(cards) = cards;
+        return cards;
+    }
+
+    public Card getTopCard(){
+
+        return currentCard = playerHand.removeTopCard();
+    }
+
+//    public Card getCurrentCard(){
+//
+//        for(Deck c: playerHand){
+//
+//        }
+//        return; }
+>>>>>>> bfc8276 (blackjack so far)
 }

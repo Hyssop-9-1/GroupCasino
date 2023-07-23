@@ -26,7 +26,9 @@ public class Card {
         return rank.ordinal()+2; ///MAYBE??!
     }
 
-
+    public Rank getBlackJackValue(){
+        return rank;
+    }
 
     //add toString
     @Override
@@ -55,7 +57,10 @@ public class Card {
         }
       return sb.toString();
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> bfc8276 (blackjack so far)
 
 //     .--`----.  .-------.  .------.  .------.
 //     |A_  _ |  | A /\  |  |A _   |  |A .   |
