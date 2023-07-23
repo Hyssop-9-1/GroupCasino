@@ -106,4 +106,42 @@ public class SlotsGame implements GameInterface {
     public void checkWinCond() {
 
     }
+
+    public String displaySlots(){
+        String slotsFormatted = "  ┌────────────────────────────┐\n" +
+                                "  │      ____  _       _       │\n" +
+                                "  │     / ___|| | ___ | |_     │\n" +
+                                "  │     \\___ \\| |/ _ \\| __|    │\n" +
+                                "  │      ___) | | (_) | |_     │\n" +
+                                "  │     |____/|_|\\___/ \\__|    │\n" +
+                                "  │                            │\n" +
+                                "  │                            │\n" +
+                                "  │                            │\n" +
+                                "  │   ┌─────┐ ┌─────┐ ┌─────┐  │\n" +
+                                "  │   │     │ │     │ │     │  │\n" +
+                                "  │   │ %s  │ │  %s │ │ %s  │  │\n" +
+                                "  │   │     │ │     │ │     │  │\n" +
+                                "  │   └─────┘ └─────┘ └─────┘  │\n" +
+                                "  │                            │\n" +
+                                "  │                            │\n" +
+                                "  │                            │\n" +
+                                "  │                            │\n" +
+                                "  └────────────────────────────┘";
+        String s1 = "";
+        String s2 = "";
+        String s3 = "";
+        try{
+            s1 = spinAndBuildSlots();
+            s2 = spinAndBuildSlots();
+            s3 = spinAndBuildSlots();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        System.out.println(String.format(slotsFormatted, s1.charAt(0),s1.charAt(1), s1.charAt(2), s2.charAt(0),s2.charAt(1),s2.charAt(2),
+                s3.charAt(0),s3.charAt(1),s3.charAt(2)));
+        return "no u";
+    }
+
+
 }
