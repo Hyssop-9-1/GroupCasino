@@ -33,9 +33,6 @@ public class Card {
     public String toString() {
         return  rank + " of " + suit;
     }
-
-
-
     public String cardDisplay(){
         StringBuilder sb = new StringBuilder();
         switch(suit.ordinal()){
