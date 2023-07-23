@@ -67,6 +67,7 @@ public class RouletteGame implements GameInterface {
     }
 
 
+
     private int spinRoulette() {
         int betType;
         do {

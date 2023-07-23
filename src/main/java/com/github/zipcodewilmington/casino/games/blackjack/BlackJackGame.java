@@ -7,17 +7,13 @@ import com.github.zipcodewilmington.casino.gametools.Deck;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
 
-=======
->>>>>>> bfc8276 (blackjack so far)
 public class BlackJackGame implements GameInterface {
 
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
 
     Deck blackJackDeck;
-<<<<<<< HEAD
+
     //private BlackJackPlayer blackJackPlayer;
 
     public BlackJackGame(){
@@ -33,12 +29,7 @@ public class BlackJackGame implements GameInterface {
     BlackJackPlayer blackJackPlayer = new BlackJackPlayer(playerAccount);
     CasinoAccount dealerAccount = new CasinoAccount("dealer", "benji", 1000.00);
     DealerPlayer dealerPlayer = new DealerPlayer(dealerAccount);
-=======
 
-
-    private BlackJackPlayer userPlayer;
-    private DealerPlayer dealerPlayer;
->>>>>>> bfc8276 (blackjack so far)
 
     public static void main(String[] args) {
 
