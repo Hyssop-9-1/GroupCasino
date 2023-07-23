@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class DealerPlayer extends GamblingPlayer {
     Deck dealerHand = new Deck();
-    Card currentCard;
 
     public DealerPlayer(CasinoAccount acct) {
         super(acct);
@@ -22,13 +21,17 @@ public class DealerPlayer extends GamblingPlayer {
         return cards;
     }
 
-    public String viewCard(){
+    public String viewOneCardFromDealer(){
+        return ("The dealer is currently showing one card with a value of: " + dealerHand.getCards().get(0).rank.getBlackJackValue());
+    }
+
+    public String fullReveal(){
         StringBuilder sb = new StringBuilder();
-//        for (Card c: dealerHand.getCards()){
-//            sb.append(" have the " + c.toString() + "\n");
-//        }
-        return ("The dealer currently is showing one card with a value of: " + dealerHand.getCards().get(0));
-                //String.valueOf(sb);
+        for (Card c: dealerHand.getCards()){
+            sb.append("The dealer had " + c.toString() + "\n");
+        }
+
+        return String.valueOf(sb);
     }
 
     //method to make sure the dealer values line up with the correct total
@@ -43,15 +46,25 @@ public class DealerPlayer extends GamblingPlayer {
 
     public Integer handTotal(){
         int total = 0;
+        int numOfAces = 0;
         for (Card c: dealerHand.getCards()){
-            if (c.getValue() > 10) {
-                total += 10;
-            } else {
-                total += c.getValue();
+            if (c.rank.getAbbreviation().equals("A"))
+            {
+                numOfAces++;
+            }
+            total += c.rank.getBlackJackValue();
+        }
+        if (numOfAces > 0)
+        {
+            if ((total + 11) <= 21 )
+            {
+                total += 11;
+            }
+            else
+            {
+                total += 1;
             }
         }
         return total;
     }
-
-
 }
