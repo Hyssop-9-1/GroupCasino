@@ -10,10 +10,7 @@ import java.util.ArrayList;
 public class DealerPlayer extends GamblingPlayer {
     Deck dealerHand = new Deck();
     Card currentCard;
-<<<<<<< HEAD
 
-=======
->>>>>>> bfc8276 (blackjack so far)
     public DealerPlayer(CasinoAccount acct) {
         super(acct);
         this.dealerHand.emptyDeck();
@@ -25,7 +22,6 @@ public class DealerPlayer extends GamblingPlayer {
         return cards;
     }
 
-<<<<<<< HEAD
     public String viewCard(){
         StringBuilder sb = new StringBuilder();
 //        for (Card c: dealerHand.getCards()){
@@ -56,16 +52,6 @@ public class DealerPlayer extends GamblingPlayer {
         }
         return total;
     }
-=======
-    public Card getTopCard(){
-
-        return currentCard = dealerHand.removeTopCard();
-    }
-
-    public Card getCurrentCard(){
-
-        return currentCard;}
->>>>>>> bfc8276 (blackjack so far)
 
 
 }
