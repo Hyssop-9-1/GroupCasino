@@ -114,7 +114,7 @@ public class Casino implements Runnable {
     }
 
 
-    private CasinoAccount login() {
+    private CasinoAccount login(){
         CasinoAccount account;
         String errorMessage = "No account found with name of [ %s ] and password of [ %s ]";
         int loginAttempts = 0;

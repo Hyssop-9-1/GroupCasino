@@ -7,8 +7,6 @@ public class Card {
     Suits suit;
     public Rank rank;
 
-
-
     public Card(Suits suit, Rank rank){
         this.suit = suit;
         this.rank = rank;
@@ -25,8 +23,6 @@ public class Card {
     public int getValue(){
         return rank.ordinal()+2; ///MAYBE??!
     }
-
-
 
     //add toString
     @Override
