@@ -52,17 +52,15 @@ public class DealerPlayer extends GamblingPlayer {
             {
                 numOfAces++;
             }
+            //adds one to the hand total no matter what
             total += c.rank.getBlackJackValue();
         }
+        //if hand total with ace is less than 21 add 10 since we already added one in the loop earlier
         if (numOfAces > 0)
         {
             if ((total + 11) <= 21 )
             {
-                total += 11;
-            }
-            else
-            {
-                total += 1;
+                total += 10;
             }
         }
         return total;
