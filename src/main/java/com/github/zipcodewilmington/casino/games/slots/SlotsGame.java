@@ -108,40 +108,39 @@ public class SlotsGame implements GameInterface {
     }
 
     public String displaySlots(){
-        String slotsFormatted = "  ┌────────────────────────────┐\n" +
-                                "  │      ____  _       _       │\n" +
-                                "  │     / ___|| | ___ | |_     │\n" +
-                                "  │     \\___ \\| |/ _ \\| __|    │\n" +
-                                "  │      ___) | | (_) | |_     │\n" +
-                                "  │     |____/|_|\\___/ \\__|    │\n" +
-                                "  │                            │\n" +
-                                "  │                            │\n" +
-                                "  │                            │\n" +
-                                "  │   ┌─────┐ ┌─────┐ ┌─────┐  │\n" +
-                                "  │   │     │ │     │ │     │  │\n" +
-                                "  │   │ %s  │ │  %s │ │ %s  │  │\n" +
-                                "  │   │     │ │     │ │     │  │\n" +
-                                "  │   └─────┘ └─────┘ └─────┘  │\n" +
-                                "  │                            │\n" +
-                                "  │                            │\n" +
-                                "  │                            │\n" +
-                                "  │                            │\n" +
-                                "  └────────────────────────────┘";
-        String s1 = "";
-        String s2 = "";
-        String s3 = "";
-        try{
-            s1 = spinAndBuildSlots();
-            s2 = spinAndBuildSlots();
-            s3 = spinAndBuildSlots();
+        String slotsFormatted =
+                                "    ____  _       _      \n" +
+                                "   / ___|| | ___ | |_    \n" +
+                                "   \\___ \\| |/ _ \\| __| \n" +
+                                "    ___) | | (_) | |_     \n" +
+                                "   |____/|_|\\___/ \\__| \n" +
+                                "  ┌─────┐ ┌─────┐ ┌─────┐\n" +
+                                "  │     │ │     │ │     │\n" +
+                                "  │  %s │ │ %3s │ │ %5s │\n" +
+                                "  │     │ │     │ │     │\n" +
+                                "  └─────┘ └─────┘ └─────┘\n";
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        System.out.println(String.format(slotsFormatted, s1.charAt(0),s1.charAt(1), s1.charAt(2), s2.charAt(0),s2.charAt(1),s2.charAt(2),
-                s3.charAt(0),s3.charAt(1),s3.charAt(2)));
+        System.out.println(slotsFormatted);
         return "no u";
     }
 
+
+    public static void main(String[] args) throws InterruptedException{
+//        SlotsGame game = new SlotsGame();
+//        game.displaySlots();
+
+        String[] icon = {"\u2B50", "\u26d4", "\u2705", "\u27a1"};
+        //"\uD83D\uDD34", "\uD83D\uDD37",
+        for(String s : icon){
+            System.out.print(s);
+            Thread.sleep(500);
+            System.out.print("\b");
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < 15; i++){
+
+        }
+    }
 
 }
