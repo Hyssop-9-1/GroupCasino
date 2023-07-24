@@ -1,6 +1,8 @@
 package com.github.zipcodewilmington;
 
 import com.github.zipcodewilmington.casino.*;
+import com.github.zipcodewilmington.casino.games.blackjack.BlackJackGame;
+import com.github.zipcodewilmington.casino.games.blackjack.BlackJackPlayer;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
 import com.github.zipcodewilmington.casino.games.roll.RollGame;
@@ -54,7 +56,12 @@ public class Casino implements Runnable {
                             game.addPlayer(new RollPlayer(login()));
                         }
                         game.run();
-                    } else {
+                    } else if(gameSelectionInput.equalsIgnoreCase("blackjack")){
+                        BlackJackGame game = new BlackJackGame();
+                        game.addPlayer(new BlackJackPlayer(casinoAccount));
+                        game.run();
+                    }
+                    else {
                         // TODO - implement better exception handling
                         String errorMessage = "[ %s ] is an invalid game selection";
                         throw new RuntimeException(String.format(errorMessage, gameSelectionInput));
@@ -103,7 +110,7 @@ public class Casino implements Runnable {
         return console.getStringInput(new StringBuilder()
                 .append("Welcome to the Game Selection Dashboard!")
                 .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ SLOTS ], [ NUMBERGUESS ], [ WAR ], [ ROLL ]")
+                .append("\n\t[ SLOTS ], [ NUMBERGUESS ], [ WAR ], [ ROLL ], [ BLACKJACK ]")
                 .toString());
     }
 

@@ -91,10 +91,10 @@ public class RouletteGame implements GameInterface {
         if (chosenNumber == winningNumber) {
             int winnings = betAmount * 35;
             playerBalance += winnings;
-            System.out.println("Congratulations! You won $" + winnings);
+            console.println("Congratulations! You won $" + winnings);
         } else {
             playerBalance -= 950;
-            System.out.println("Sorry, you lost $" + betAmount);
+            console.println("Sorry, you lost $" + betAmount);
         }
 
         return 0;
@@ -106,10 +106,10 @@ public class RouletteGame implements GameInterface {
         int betAmount = 200;
         if (winningNumber == 21 || winningNumber == 21 || isBlack(winningNumber)) {
             playerBalance += betAmount;
-            System.out.println("Congratulations! You won $" + betAmount);
+            console.println("Congratulations! You won $" + betAmount);
         } else {
             playerBalance -= 800;
-            System.out.println("Sorry, you lost $" + betAmount);
+            console.println("Sorry, you lost $" + betAmount);
         }
 
         return 0;
