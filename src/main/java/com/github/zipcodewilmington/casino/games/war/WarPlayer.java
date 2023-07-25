@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class WarPlayer extends GamblingPlayer {
 
-    Deck playerHand= new Deck();
-    Integer playerPoints=0;
+    Deck playerHand = new Deck();
+    Integer playerPoints = 0;
     Card currentCard;
 
     public WarPlayer(CasinoAccount acct) {
@@ -19,22 +19,25 @@ public class WarPlayer extends GamblingPlayer {
 
     }
 
-    public Card getTopCard(){
+    public Card getTopCard() {
 
         return currentCard = playerHand.removeTopCard();
     }
 
-    public Card getCurrentCard(){
+    public Card getCurrentCard() {
 
-        return currentCard;}
+        return currentCard;
+    }
 
-    public void addPlayerHand(ArrayList<Card> cards){
+    public void addPlayerHand(ArrayList<Card> cards) {
         playerHand.addCards(cards);
     }
-    public Integer getPlayerPoints(){
+
+    public Integer getPlayerPoints() {
         return playerPoints;
     }
-    public void addPoints(int points){
+
+    public void addPoints(int points) {
         playerPoints += points;
     }
 }

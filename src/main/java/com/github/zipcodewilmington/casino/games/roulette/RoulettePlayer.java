@@ -4,7 +4,7 @@ import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.GamblingPlayer;
 
 public class RoulettePlayer extends GamblingPlayer {
-    int currentBetKey;
+    int currentBetKey;  //may need to be a String so it can take a number or red/black
 
     public int getCurrentBetKey() {
         return currentBetKey;

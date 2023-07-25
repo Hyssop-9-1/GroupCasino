@@ -17,14 +17,14 @@ public class RouletteGame implements GameInterface {
     String[] wheel;
     ArrayList < RoulettePlayer > players = new ArrayList<>();
     IOConsole console = new  IOConsole();
-    private static int playerBalance;
+    private static int playerBalance; //remove?
 /*
     things you can bet on 1-36 that gives them 100 times of whatever they bet
     or you can bet on a color which is 50/50 double your bets
     bet between 1-9 or 10-18 or 19-27 or 28-36 that will get you four times whatever you get
  */
 
-    public RouletteGame(){
+    public RouletteGame(){  //
         System.out.println("Welcome to the Roulette Game!");
         final int[] RED_NUMBERS = { 1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36 };
         final int[] BLACK_NUMBERS = { 2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35 };
@@ -37,7 +37,7 @@ public class RouletteGame implements GameInterface {
 
     }
 
-    public Integer spinWheel() {
+    public Integer spinWheel() {  //return winning number?
         System.out.println("Lets Play The Game");
 
         while (playerBalance > 0) {
@@ -67,11 +67,11 @@ public class RouletteGame implements GameInterface {
     }
 
 
-    private int spinRoulette() {
+    private int spinRoulette() {  //should generate random number
         int betType;
         do {
             System.out.println("Select your bet type:");
-            System.out.println("1. Bet on a number (payout 35:1)");
+            System.out.println("1. Bet on a number (payout 35:1)"); //get number
             System.out.println("2. Bet on red (payout 1:1)");
             System.out.println("3. Bet on black (payout 1:1)");
             Random scanner = null;
