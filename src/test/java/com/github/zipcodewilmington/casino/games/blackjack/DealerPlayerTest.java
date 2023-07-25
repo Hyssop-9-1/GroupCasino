@@ -43,7 +43,13 @@ public class DealerPlayerTest {
         dealerPlayer.dealerHand.emptyDeck();
         dealerPlayer.dealerHand.addCards(new Card(Suits.DIAMONDS, Rank.EIGHT));
 
-        String expected = "The dealer had EIGHT of DIAMONDS\n";
+        String expected = "The dealer had EIGHT of DIAMONDS\n" +
+                ".-------.\n" +
+                "|8  /\\  |\n" +
+                "|  /  \\ |\n" +
+                "|  \\  / |\n" +
+                "|   \\/8 |\n" +
+                "`-------' \n";
         String actual = dealerPlayer.fullReveal();
 
         assertEquals(expected, actual);
@@ -56,7 +62,13 @@ public class DealerPlayerTest {
         dealerPlayer.dealerHand.emptyDeck();
         dealerPlayer.dealerHand.addCards(new Card(Suits.DIAMONDS, Rank.JACK));
 
-        String expected = "The dealer is currently showing one card which is the JACK of DIAMONDS. The dealer's current hand value is 10";
+        String expected = "The dealer is currently showing one card which is the JACK of DIAMONDS. The dealer's current hand value is 10\n" +
+                ".-------.\n" +
+                "|J  /\\  |\n" +
+                "|  /  \\ |\n" +
+                "|  \\  / |\n" +
+                "|   \\/J |\n" +
+                "`-------' \n";
         String actual = dealerPlayer.viewOneCardFromDealer();
 
         assertEquals(expected, actual);
