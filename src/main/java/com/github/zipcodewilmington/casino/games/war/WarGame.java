@@ -26,6 +26,7 @@ public class WarGame implements GameInterface {
 
     }
 
+
     public void compareCards(Card playerCard, Card dealerCard) {
 
         switch (Integer.compare(playerCard.getValue(), dealerCard.getValue())) {
@@ -56,6 +57,7 @@ public class WarGame implements GameInterface {
             }
 
         System.out.println(player.getAccountName() + "'s Card: " + player.getCurrentCard().getRank() + " of " + player.getCurrentCard().getSuit());
+        System.out.println(player.getCurrentCard().cardDisplay()+"\n");
 
     }
 
@@ -67,6 +69,7 @@ public class WarGame implements GameInterface {
 
     @Override
     public void run() {
+        intro();
         boolean cont = true;
         do {
             setup();
@@ -82,6 +85,7 @@ public class WarGame implements GameInterface {
                 }
             }
             checkWinCond();
+
             String playAgain = console.getStringInput("Play again? [Y]/[N]");
             if (playAgain.equalsIgnoreCase("n")) {
                 cont = false;
@@ -122,5 +126,23 @@ public class WarGame implements GameInterface {
         } else {
             System.out.println("Dealer wins.");
         }
+    }
+
+    public void intro(){
+System.out.print(
+"**\n"+
+"**\n"+
+" **    ***    ****                ***  ****\n"+
+"  **    ***     ***  *    ****     **** **** * \n"+
+"  **     ***     ****    * ***  *   **   ****  \n"+
+"  **      **      **    *   ****    **         \n"+
+"  **      **      **   **    **     **         \n"+
+"  **      **      **   **    **     **         \n"+
+"  **      **      **   **    **     **         \n"+
+"  **      **      *    **    **     **         \n"+
+"   ******* *******     **    **     ***        \n"+
+"    *****   *****       ***** **     ***       \n"+
+"                         ***   **");
+
     }
 }
