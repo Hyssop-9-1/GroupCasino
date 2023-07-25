@@ -22,7 +22,8 @@ public class DealerPlayer extends GamblingPlayer {
     }
 
     public String viewOneCardFromDealer(){
-        return ("The dealer is currently showing one card with a value of: " + dealerHand.getCards().get(0).rank.getBlackJackValue());
+        return ("The dealer is currently showing one card which is the " + dealerHand.getCards().get(0).toString() + ". The dealer's current hand value is " + dealerHand.getCards().get(0).rank.getBlackJackValue());
+
     }
 
     public String fullReveal(){
