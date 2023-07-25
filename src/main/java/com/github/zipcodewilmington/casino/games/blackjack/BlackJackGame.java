@@ -25,14 +25,14 @@ public class BlackJackGame implements GameInterface {
 //        this.blackJackPlayer = player;
 //    }
 
-    CasinoAccount playerAccount = new CasinoAccount("manny", "benji", 1000.00);
-    BlackJackPlayer blackJackPlayer = new BlackJackPlayer(playerAccount);
+//    CasinoAccount playerAccount ;//= new CasinoAccount("manny", "benji", 1000.00)
+    BlackJackPlayer blackJackPlayer; //= new BlackJackPlayer(playerAccount);
     CasinoAccount dealerAccount = new CasinoAccount("dealer", "benji", 1000.00);
     DealerPlayer dealerPlayer = new DealerPlayer(dealerAccount);
 
-    public static void main(String[] args) {
-        new BlackJackGame().run();
-    }
+//    public static void main(String[] args) {
+//        new BlackJackGame().run();
+//    }
 
     public ArrayList<Card> playerHit() {
         return blackJackPlayer.addPlayerHand(blackJackDeck.deal(1));

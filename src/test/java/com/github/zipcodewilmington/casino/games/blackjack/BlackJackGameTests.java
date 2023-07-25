@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.casino.games.blackjack;
 
+import com.github.zipcodewilmington.casino.CasinoAccount;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,19 +23,21 @@ public class BlackJackGameTests {
     void testPlayerBlackJack(){
         //given
         BlackJackGame game = new BlackJackGame();
+        game.addPlayer(new BlackJackPlayer(new CasinoAccount(null, null)));
         boolean expected = true;
 
-        int player = 21;
+        int player1 = 21;
         int dealer = 9;
 
 
-        assertEquals(expected, game.decideWinner(player, dealer));
+        assertEquals(expected, game.decideWinner(player1, dealer));
     }
 
     @Test
     void testDealerBust(){
         //given
         BlackJackGame game = new BlackJackGame();
+        game.addPlayer(new BlackJackPlayer(new CasinoAccount(null, null)));
         boolean expected = true;
 
         int player = 19;
@@ -48,6 +51,8 @@ public class BlackJackGameTests {
     void testPlayerWin(){
         //given
         BlackJackGame game = new BlackJackGame();
+        game.addPlayer(new BlackJackPlayer(new CasinoAccount(null, null)));
+
         boolean expected = true;
 
         int player = 19;
@@ -61,6 +66,8 @@ public class BlackJackGameTests {
     void testDealerWin(){
         //given
         BlackJackGame game = new BlackJackGame();
+        game.addPlayer(new BlackJackPlayer(new CasinoAccount(null, null)));
+
         boolean expected = false;
 
         int player = 3;
@@ -74,6 +81,8 @@ public class BlackJackGameTests {
     void testTie(){
         //given
         BlackJackGame game = new BlackJackGame();
+        game.addPlayer(new BlackJackPlayer(new CasinoAccount(null, null)));
+
         boolean expected = false;
 
         int player = 8;
