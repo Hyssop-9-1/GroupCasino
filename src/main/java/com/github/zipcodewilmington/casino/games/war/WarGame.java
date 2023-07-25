@@ -17,7 +17,7 @@ public class WarGame implements GameInterface {
     Deck warDeck;
     int gamePoints = 0;
 
-    //    private List<WarPlayer> players = new ArrayList<>();
+//    private List<WarPlayer> players = new ArrayList<>();
 //    public WarGame(List<WarPlayer> players) { this.players.addAll(players);}
     private WarPlayer player;
     private WarPlayer dealer = new WarPlayer(new CasinoAccount("Dealer", null));
