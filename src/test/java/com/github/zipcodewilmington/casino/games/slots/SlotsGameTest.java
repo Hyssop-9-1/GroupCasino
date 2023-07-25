@@ -44,6 +44,7 @@ public class SlotsGameTest {
         String arrSlot = "a a a";
         boolean actual = game.checkWinCondition(arrSlot);
 
+
         assertEquals(expected, actual);
     }
 

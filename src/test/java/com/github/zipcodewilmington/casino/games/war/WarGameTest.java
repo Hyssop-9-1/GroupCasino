@@ -14,20 +14,13 @@ public class WarGameTest {
         WarGame game = new WarGame();
         Deck deck = new Deck();
         WarPlayer player = new WarPlayer(new CasinoAccount(null, null));
-        player.addPlayerHand(deck.deal(0));
+        player.addPlayerHand(deck.deal(10));
 
 
         //player.playerHand.emptyDeck();
         game.flipCards( player, 5);
-
-
-
-
-
-
-
-
-
+        int actual = player.playerHand.deckSize();
+        Assert.assertEquals(5, actual);
         }
 
     }
