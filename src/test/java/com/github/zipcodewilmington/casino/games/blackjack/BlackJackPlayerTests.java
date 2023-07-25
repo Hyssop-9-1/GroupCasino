@@ -16,59 +16,57 @@ public class BlackJackPlayerTests {
     //ask about how to instantiate player hand for tests
     @Test
     void testAceValueChecker(){
-        Deck playerHand = new Deck();
-        playerHand.emptyDeck();
-        playerHand.addCards(new Card(Suits.DIAMONDS, Rank.ACE));
         CasinoAccount account = new CasinoAccount("Manny", "Benji");
         BlackJackPlayer player = new BlackJackPlayer(account);
-
+        player.playerHand.addCards(new Card(Suits.DIAMONDS, Rank.ACE));
         int expected = 11;
 
-        int actual = player.handTotal() + 1;
-        int tempTotal = actual;
-        for (Card c: playerHand.getCards()){
-            if (c.rank.getAbbreviation().equals("A"))
-            {
-                if ((tempTotal + 11) <= 21 ){
-                    actual += 11;
-                    break;
-                } else
-                {
-                    actual += c.rank.getBlackJackValue();
-                    break;
-                }
-            }
-            actual += c.rank.getBlackJackValue();
-        };
+         int actual = player.handTotal();
+
         assertEquals(expected, actual);
     }
 
     @Test
     void testHandTotal(){
-        Deck playerHand = new Deck();
-        playerHand.emptyDeck();
-        playerHand.addCards(new Card(Suits.DIAMONDS, Rank.EIGHT));
         CasinoAccount account = new CasinoAccount("Manny", "Benji");
         BlackJackPlayer player = new BlackJackPlayer(account);
-
+        player.playerHand.emptyDeck();
+        player.playerHand.addCards(new Card(Suits.DIAMONDS, Rank.EIGHT));
         int expected = 8;
 
         int actual = player.handTotal();
-        int tempTotal = actual;
-        for (Card c: playerHand.getCards()){
-            if (c.rank.getAbbreviation().equals("A"))
-            {
-                if ((tempTotal + 11) > 21 ){
-                    actual += c.rank.getBlackJackValue();
-                    break;
-                } else
-                {
-                    actual += 11;
-                    break;
-                }
-            }
-            actual += c.rank.getBlackJackValue();
-        };
+
         assertEquals(expected, actual);
     }
+
+    @Test
+    void testViewCard(){
+        CasinoAccount account = new CasinoAccount("Manny", "Benji");
+        BlackJackPlayer player = new BlackJackPlayer(account);
+        player.playerHand.emptyDeck();
+        player.playerHand.addCards(new Card(Suits.DIAMONDS, Rank.EIGHT));
+
+        String expected = "You have the EIGHT of DIAMONDS\n";
+        String actual = player.viewCard();
+
+        assertEquals(expected, actual);
+    }
+
+//    @Test
+//    void addPlayerHand(){
+//        CasinoAccount account = new CasinoAccount("Manny", "Benji");
+//        BlackJackPlayer player = new BlackJackPlayer(account);
+//        player.playerHand.emptyDeck();
+//
+//        ArrayList<Card> expected =  new ArrayList<>();
+//        expected.add(new Card(Suits.SPADES, Rank.ACE));
+//        player.playerHand.addCards(new Card(Suits.SPADES, Rank.ACE));
+//
+//
+//        //when
+//        ArrayList<Card> actual =  new ArrayList<>();
+//        actual.add(new Card(Suits.SPADES, Rank.ACE));
+//        player.playerHand.addCards(actual);
+//
+//    }
 }

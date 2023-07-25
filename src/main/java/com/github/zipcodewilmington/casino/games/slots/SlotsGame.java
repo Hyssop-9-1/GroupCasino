@@ -15,7 +15,9 @@ import java.util.Random;
  */
 public class SlotsGame implements GameInterface {
 
-    private final String[] icons = { " ", "APPLE", "7", "$", "BAR", ">_<"};
+    //private final String[] icons = { "","\u2B50", "\u26d4", "\u2705", "\u27a1","\u26d4","\u26d4"};
+    private final String[] icons = { "","$", "7","#", "@","&"};//
+
     private final IOConsole console =  new IOConsole(AnsiColor.BLUE);
     Random rand = new Random();
     private int randNumber;
@@ -37,25 +39,61 @@ public class SlotsGame implements GameInterface {
     }
 
     public String spinAndBuildSlots() throws InterruptedException {
-        StringBuilder sb = new StringBuilder();
-        int counter = 0;
+//        StringBuilder sb = new StringBuilder();
+//        int counter = 0;
+//
+//        while (counter < 3){
+//            String randomIcon = icons[generateRandomNum()];
+//            //String randomIcon = icons[0];
+//            console.print(randomIcon + " ");
+//            sb.append(randomIcon + " ");
+//            Thread.sleep(2000);
+//            counter++;
+//        }
+//        return String.valueOf(sb);
+//        SlotsGame game = new SlotsGame();
+//        game.displaySlots();
 
-        while (counter < 3){
-            String randomIcon = icons[generateRandomNum()];
-            //String randomIcon = icons[0];
-            console.print(randomIcon + " ");
-            sb.append(randomIcon + " ");
-            Thread.sleep(2000);
-            counter++;
+        //"\uD83D\uDD34", "\uD83D\uDD37",
+        System.out.println( "    ____  _       _      \n" +
+                "   / ___|| | ___ | |_    \n" +
+                "   \\___ \\| |/ _ \\| __| \n" +
+                "    ___) | | (_) | |_     \n" +
+                "   |____/|_|\\___/ \\__| \n");
+        String slotsFormat = "%6s";
+        int slotsConfirmed = 0;
+        for(int i = 0; i < 11; i++) {
+            for (int x = 3; slotsConfirmed < x; x--) {
+                System.out.printf(slotsFormat, icons[generateRandomNum()]);
+                Thread.sleep(300);
+                System.out.print("\b");
+            }
+            for(int p = 0; p < 24 ; p++){ //8 * (3-slotsConfirmed)
+                System.out.print("\b");
+            }
+            if(i == 10 && slotsConfirmed < 3){
+                if(slotsConfirmed == 2){
+                    slotsFormat = "     " + icons[generateRandomNum()] + slotsFormat;
+                    slotsFormat = slotsFormat.replace("%6s", "");
+                }
+                else {
+                    slotsFormat = "     " + icons[generateRandomNum()] + slotsFormat;
+                    slotsConfirmed++;
+                    i = 0;
+                }
+            }
         }
-        return String.valueOf(sb);
+        return slotsFormat;
     }
 
     public boolean checkWinCondition(String spin) throws InterruptedException {
-        String[] arrSlot = spin.split(" ");
+        spin = spin.replace("     ", "");
+        //String[] arrSlot = spin.split("     ");
+
         //String arrSlot[] = {"a", "a", "a"};
         //checks each position of slot if we want to not hard code values I can come up with a solution
-        return arrSlot[0].equals(arrSlot[1]) && (arrSlot[0].equals(arrSlot[2]));
+        //return arrSlot[0].equals(arrSlot[1]) && (arrSlot[0].equals(arrSlot[2]));
+        return spin.charAt(0) == spin.charAt(1) && spin.charAt(0)==spin.charAt(2);
     }
 
     @Override
@@ -69,6 +107,7 @@ public class SlotsGame implements GameInterface {
                 //spins and sets the string
                 player.setCurrentSlotCombination(spinAndBuildSlots());
                 //checks the win condition of players current state of combinations
+                console.println(player.getCurrentSlotCombination());
                 if(checkWinCondition(player.getCurrentSlotCombination())){
                     console.println("\nCongratulations " + player.getAccountName() + ", you won, " +
                             (player.getCurrentBet() * 10) + " has been added to your account. ");
@@ -106,4 +145,6 @@ public class SlotsGame implements GameInterface {
     public void checkWinCond() {
 
     }
+
+
 }

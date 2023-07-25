@@ -83,6 +83,7 @@ public class WarGame implements GameInterface {
                 }
             }
             checkWinCond();
+
             String playAgain = console.getStringInput("Play again? [Y]/[N]");
             if (playAgain.equalsIgnoreCase("n")) {
                 cont = false;
