@@ -56,7 +56,7 @@ public class DealerPlayerTest {
         dealerPlayer.dealerHand.emptyDeck();
         dealerPlayer.dealerHand.addCards(new Card(Suits.DIAMONDS, Rank.JACK));
 
-        String expected = "The dealer is currently showing one card with a value of: 10";
+        String expected = "The dealer is currently showing one card which is the JACK of DIAMONDS. The dealer's current hand value is 10";
         String actual = dealerPlayer.viewOneCardFromDealer();
 
         assertEquals(expected, actual);

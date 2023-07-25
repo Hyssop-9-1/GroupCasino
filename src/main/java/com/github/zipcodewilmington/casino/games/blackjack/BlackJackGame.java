@@ -54,22 +54,32 @@ public class BlackJackGame implements GameInterface {
         }
         else if (dealerTotal > 21)
         {
+            console.println("Your hand value was: " + getPlayerHandValue() + "\n");
+            console.println(dealerPlayer.fullReveal());
             console.println("\nThe dealer had a total of " + dealerTotal);
             console.println("The dealer busted. You win!\n");
             return true;
         }
         else if (playerTotal > dealerTotal)
         {
+            console.println("Your hand value was: " + getPlayerHandValue() + "\n");
+            console.println(dealerPlayer.fullReveal());
+            console.println("\nThe dealer's hand value was: " + dealerTotal);
             console.println("\nCongratulations " + blackJackPlayer.getAccountName() + ", you won!\n");
             return true;
         }
         else if (dealerTotal > playerTotal)
         {
+            console.println("Your hand value was: " + getPlayerHandValue() + "\n");
+            console.println(dealerPlayer.fullReveal());
             console.println("\nThe dealer has a total of " + dealerTotal);
             console.println("You lost. Better luck next time!\n");
         }
         else
         {
+            console.println("Your hand value was: " + getPlayerHandValue() + "\n");
+            console.println(dealerPlayer.fullReveal());
+            console.println("The dealer's hand value was: " + dealerTotal);
             console.println("\nIt's a tie!\n");
         }
         return false;
@@ -83,7 +93,7 @@ public class BlackJackGame implements GameInterface {
             {
                 //better way to display the values of player and dealer
                 playerHit();
-                //viewTable();
+                viewTable();
                 viewPlayerTurn();
                 if (getPlayerHandValue() >= 21)
                 {
@@ -93,12 +103,13 @@ public class BlackJackGame implements GameInterface {
             }
             else
             {
-                console.getStringInput("Invalid input. Please enter [h] to hit / [s] to stand dummy \n");
+                console.println("\nInvalid input.");
             }
             //outside the loop keep asking the player for input
             // viewPlayerTurn();
-            input = console.getStringInput("Would you like to hit or stand? Press [h] to hit / [s] to stand \n");
+            input = console.getStringInput("\nWould you like to hit or stand? Press [h] to hit / [s] to stand \n");
         }
+        viewTable();
         console.println("You stand: \n");
         return false;
     }
@@ -111,11 +122,14 @@ public class BlackJackGame implements GameInterface {
     }
 
     public boolean continuePlaying(String userInput) {
-        if (userInput.equalsIgnoreCase("y"))
+        while (!userInput.equalsIgnoreCase("y"))
         {
-            return true;
+            if (userInput.equalsIgnoreCase("n")){
+                return false;
+            }
+            userInput = console.getStringInput("\nInvalid input: please type [y] to keep playing / [n] to stop playing");
         }
-        return false;
+        return true;
     }
 
     //player turn shows the player their hand total and the dealer hand total showing one card
@@ -160,7 +174,9 @@ public class BlackJackGame implements GameInterface {
 
             setup(); viewTable(); viewPlayerTurn();
 
-            String userTurn = console.getStringInput("Would you like to hit or stand? Press [h] to hit / [s] to stand ");
+            //console.println(dealerPlayer.fullReveal());
+
+            String userTurn = console.getStringInput("\nWould you like to hit or stand? Press [h] to hit / [s] to stand ");
             playerGameplayLoop(userTurn);
             dealerPlay();
 
