@@ -22,7 +22,7 @@ public class DealerPlayer extends GamblingPlayer {
     }
 
     public String viewOneCardFromDealer(){
-        return ("The dealer is currently showing one card which is the " + dealerHand.getCards().get(0).toString() + ". The dealer's current hand value is " + dealerHand.getCards().get(0).rank.getBlackJackValue());
+        return ("The dealer is currently showing one card which is the " + dealerHand.getCards().get(0).toString() + ". The dealer's current hand value is " + dealerHand.getCards().get(0).rank.getBlackJackValue() + "\n" + dealerHand.getCards().get(0).cardDisplay());
 
     }
 
@@ -30,6 +30,7 @@ public class DealerPlayer extends GamblingPlayer {
         StringBuilder sb = new StringBuilder();
         for (Card c: dealerHand.getCards()){
             sb.append("The dealer had " + c.toString() + "\n");
+            sb.append(c.cardDisplay());
         }
 
         return String.valueOf(sb);

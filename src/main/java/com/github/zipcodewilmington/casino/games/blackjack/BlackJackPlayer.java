@@ -25,6 +25,7 @@ public class BlackJackPlayer extends GamblingPlayer {
         StringBuilder sb = new StringBuilder();
         for (Card c: playerHand.getCards()){
             sb.append("You have the " + c.toString() + "\n");
+            sb.append(c.cardDisplay());
         }
 
         return String.valueOf(sb);

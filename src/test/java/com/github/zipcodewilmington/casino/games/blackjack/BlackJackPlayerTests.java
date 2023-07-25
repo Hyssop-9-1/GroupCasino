@@ -46,7 +46,13 @@ public class BlackJackPlayerTests {
         player.playerHand.emptyDeck();
         player.playerHand.addCards(new Card(Suits.DIAMONDS, Rank.EIGHT));
 
-        String expected = "You have the EIGHT of DIAMONDS\n";
+        String expected = "You have the EIGHT of DIAMONDS\n" +
+                ".-------.\n" +
+                "|8  /\\  |\n" +
+                "|  /  \\ |\n" +
+                "|  \\  / |\n" +
+                "|   \\/8 |\n" +
+                "`-------' \n";
         String actual = player.viewCard();
 
         assertEquals(expected, actual);
